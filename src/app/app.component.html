@@ -30,8 +30,6 @@
   </div>
   <!-- TABLE LIST -->
   <app-todolist
-    [tasks]="listOfData"
-    (selectedTask)="deleteToDo($event)"
     (openModal)="showModal($event)"
   ></app-todolist>
 </div>
@@ -40,5 +38,7 @@
   [isModalVisible]="isVisible"
   [currentTask]="currentSelectedTask"
   (closeModal)="handleCancel($event)"
-  (updateTask)="editToDo($event)"
+ 
 ></app-modal>
+
+<!-- (updateTask)="editToDo($event)" -->

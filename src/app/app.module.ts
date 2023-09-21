@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AntdModule } from './ant.module';
 import { TodolistComponent } from './todolist/todolist.component';
 import { ModalComponent } from './modal/modal.component';
+import { WithOptionsComponent } from './table/table.component';
 
 registerLocaleData(en);
 
@@ -19,7 +20,8 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     TodolistComponent,
-    ModalComponent
+    ModalComponent,
+    WithOptionsComponent
   ],
   imports: [
     BrowserModule,

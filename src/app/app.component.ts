@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { TodoList } from './Interface';
+import { ListService } from './services/list.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { TodoList } from './Interface';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private fb: NonNullableFormBuilder) {}
+  constructor(private fb: NonNullableFormBuilder, private listService: ListService) {}
 
   @Input() updatedTask!: TodoList;
   isVisible = false;
@@ -25,23 +26,23 @@ export class AppComponent {
     createdOn: new Date(),
   };
   //MOCK DATA LIST
-  listOfData: TodoList[] = [
-    {
-      id: 1,
-      description: 'task#1',
-      createdOn: new Date('2023-09-18'),
-    },
-    {
-      id: 2,
-      description: 'task#2',
-      createdOn: new Date('2023-09-19'),
-    },
-    {
-      id: 3,
-      description: 'task#3',
-      createdOn: new Date('2023-09-20'),
-    },
-  ];
+  // listOfData: TodoList[] = [
+  //   {
+  //     id: 1,
+  //     description: 'task#1',
+  //     createdOn: new Date('2023-09-18'),
+  //   },
+  //   {
+  //     id: 2,
+  //     description: 'task#2',
+  //     createdOn: new Date('2023-09-19'),
+  //   },
+  //   {
+  //     id: 3,
+  //     description: 'task#3',
+  //     createdOn: new Date('2023-09-20'),
+  //   },
+  // ];
 
   validateForm: FormGroup<{
     description: FormControl<string>;
@@ -57,7 +58,9 @@ export class AppComponent {
         createdOn: new Date(),
       };
       this.index++;
-      this.listOfData = [...this.listOfData, toDo];
+      // this.listOfData = [...this.listOfData, toDo];
+      this.listService.addToDo(toDo);
+      console.log('from app componnent', this.listService.listOfData)
       this.validateForm.get('description')?.reset();
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
@@ -70,28 +73,28 @@ export class AppComponent {
   }
 
   //TODO OPERATIONS
-  addToDO() {
-    let toDo: TodoList = {
-      id: this.index,
-      description: `task#${this.index}`,
-      createdOn: new Date(),
-    };
-    this.index++;
-    this.listOfData = [...this.listOfData, toDo];
-  }
-  deleteToDo(toDo: TodoList) {
-    const newList = this.listOfData.filter((item) => item.id !== toDo.id);
-    this.listOfData = newList;
-  }
-  editToDo(updatedTask: TodoList) {
-    const newData: any = this.listOfData?.map((item) => {
-      if (item.id === updatedTask.id) {
-        return updatedTask;
-      }
-      return item;
-    });
-    this.listOfData = newData;
-  }
+  // addToDO() {
+  //   let toDo: TodoList = {
+  //     id: this.index,
+  //     description: `task#${this.index}`,
+  //     createdOn: new Date(),
+  //   };
+  //   this.index++;
+  //   this.listOfData = [...this.listOfData, toDo];
+  // }
+  // deleteToDo(toDo: TodoList) {
+  //   const newList = this.listOfData.filter((item) => item.id !== toDo.id);
+  //   this.listOfData = newList;
+  // }
+  // editToDo(updatedTask: TodoList) {
+  //   const newData: any = this.listOfData?.map((item) => {
+  //     if (item.id === updatedTask.id) {
+  //       return updatedTask;
+  //     }
+  //     return item;
+  //   });
+  //   this.listOfData = newData;
+  // }
 
   //MODAL OPERATIONS
   handleCancel(val: boolean) {

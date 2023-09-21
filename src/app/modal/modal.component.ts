@@ -13,6 +13,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { TodoList } from '../Interface';
+import { ListService } from '../services/list.service';
 
 @Component({
   selector: 'app-modal',
@@ -20,7 +21,7 @@ import { TodoList } from '../Interface';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnChanges {
-  constructor(private fb: NonNullableFormBuilder) {}
+  constructor(private fb: NonNullableFormBuilder, private listService : ListService) {}
 
   @Input() isModalVisible: boolean = false;
   @Input() currentTask: TodoList = {
@@ -51,6 +52,9 @@ export class ModalComponent implements OnChanges {
   //MODAL OPERATION
   handleCancel(): void {
     this.isModalVisible = false;
+    this.validateupdateForm
+    .get('Updatedescription')
+    ?.setValue(this.currentTask?.description)
     this.closeModal.emit(this.isModalVisible);
   }
 
@@ -58,8 +62,9 @@ export class ModalComponent implements OnChanges {
   handleUpdate() {
     const newvalue = this.validateupdateForm.get('Updatedescription')?.value;
     this.currentTask = { ...this.currentTask, description: newvalue as string };
-    this.updateTask.emit(this.currentTask);
-    this.validateupdateForm.get('Updatedescription')?.reset();
+    //this.updateTask.emit(this.currentTask);
+    this.listService.editToDo(this.currentTask);
+    //this.validateupdateForm.get('Updatedescription')?.setValue(this.currentTask?.description);
     this.handleCancel();
   }
 }
