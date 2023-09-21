@@ -21,22 +21,15 @@ export class ListService {
     },
   ];
 
-  listUpdated = new EventEmitter<TodoList>();
-  deleteTask = new EventEmitter<TodoList[]>();
   editTask = new EventEmitter<TodoList[]>();
+
   addToDo(task: TodoList) {
     this.listOfData.push(task);
-    // this.listUpdated.emit(task);
-    //console.log('clicked added task',this.listOfData);
   }
 
   deleteToDo(task: TodoList) {
-    // const newList = this.listOfData.filter((item) => item.id !== task.id);
-    // this.listOfData = newList;
-    // this.deleteTask.emit(this.listOfData)
-
-    const index = this.listOfData.findIndex((obj) => obj.id===task.id);
-    this.listOfData.splice(index,1)
+    const index = this.listOfData.findIndex((obj) => obj.id === task.id);
+    this.listOfData.splice(index, 1);
     console.log('delete service', this.listOfData);
   }
 
@@ -48,8 +41,7 @@ export class ListService {
       return item;
     });
     this.listOfData = newList;
-    this.editTask.emit(this.listOfData)
+    this.editTask.emit(this.listOfData);
     console.log('edit service', this.listOfData);
-
   }
 }

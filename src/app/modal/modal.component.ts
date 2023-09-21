@@ -21,7 +21,10 @@ import { ListService } from '../services/list.service';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnChanges {
-  constructor(private fb: NonNullableFormBuilder, private listService : ListService) {}
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private listService: ListService
+  ) {}
 
   @Input() isModalVisible: boolean = false;
   @Input() currentTask: TodoList = {
@@ -33,14 +36,11 @@ export class ModalComponent implements OnChanges {
   @Output() updateTask = new EventEmitter<TodoList>();
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['currentTask']?.currentValue.description)
-    {
+    if (changes['currentTask']?.currentValue.description) {
       this.validateupdateForm
         .get('Updatedescription')
         ?.setValue(`${changes['currentTask']?.currentValue?.description}`);
-
     }
-
   }
 
   validateupdateForm: FormGroup<{
@@ -53,8 +53,8 @@ export class ModalComponent implements OnChanges {
   handleCancel(): void {
     this.isModalVisible = false;
     this.validateupdateForm
-    .get('Updatedescription')
-    ?.setValue(this.currentTask?.description)
+      .get('Updatedescription')
+      ?.setValue(this.currentTask?.description);
     this.closeModal.emit(this.isModalVisible);
   }
 
@@ -62,9 +62,7 @@ export class ModalComponent implements OnChanges {
   handleUpdate() {
     const newvalue = this.validateupdateForm.get('Updatedescription')?.value;
     this.currentTask = { ...this.currentTask, description: newvalue as string };
-    //this.updateTask.emit(this.currentTask);
     this.listService.editToDo(this.currentTask);
-    //this.validateupdateForm.get('Updatedescription')?.setValue(this.currentTask?.description);
     this.handleCancel();
   }
 }
