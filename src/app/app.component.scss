@@ -1,0 +1,20 @@
+.wrapper {
+    padding: 8rem 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5rem;
+    .add-todo-form {
+        width: 100%;
+        form {
+            width: 100%;
+            .ant-form-item {
+                width: 90%;
+                padding: 0.5rem;
+            }
+        }
+    }
+    button {
+        margin: 0.5rem;
+    }
+}

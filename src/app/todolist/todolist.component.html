@@ -1,0 +1,37 @@
+<div>
+  <nz-table #basicTable [nzData]="tasks" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Task</th>
+        <th>Created On</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.id }}</td>
+        <td>{{ data.description }}</td>
+        <td>{{ data.createdOn }}</td>
+        <td>
+          <button
+            nz-button
+            nzType="primary"
+            nzShape="round"
+            (click)="modalHandler(data)"
+          >
+            Edit
+          </button>
+          <button
+            nz-button
+            nzDanger
+            nzShape="round"
+            (click)="deleteHandler(data)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
