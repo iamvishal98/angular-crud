@@ -1,0 +1,29 @@
+<nz-modal
+  [(nzVisible)]="isModalVisible"
+  nzTitle="Task Updater"
+  (nzOnCancel)="handleCancel()"
+>
+  <form nz-form  [formGroup]="validateupdateForm" class="update-form" >
+    <div *nzModalContent>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your task!">
+          <input type="text" nz-input formControlName="Updatedescription" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div *nzModalFooter>
+      <button nz-button nzType="default" (click)="handleCancel()">
+        Go back
+      </button>
+      <button
+        nz-button
+        class="login-form-button login-form-margin"
+        [nzType]="'primary'"
+        (click)="handleUpdate()"
+        [disabled]="!validateupdateForm.valid"
+      >
+        Update Task
+      </button>
+    </div>
+  </form>
+</nz-modal>
