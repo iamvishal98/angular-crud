@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { TodoList } from '../Interface';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ListService {
@@ -21,7 +22,7 @@ export class ListService {
     },
   ];
 
-  editTask = new EventEmitter<TodoList[]>();
+  editTask = new Subject<TodoList[]>();
 
   addToDo(task: TodoList) {
     this.listOfData.push(task);
@@ -30,7 +31,7 @@ export class ListService {
   deleteToDo(task: TodoList) {
     const index = this.listOfData.findIndex((obj) => obj.id === task.id);
     this.listOfData.splice(index, 1);
-    console.log('delete service', this.listOfData);
+    //console.log('delete service', this.listOfData);
   }
 
   editToDo(updatedTask: TodoList) {
@@ -41,7 +42,7 @@ export class ListService {
       return item;
     });
     this.listOfData = newList;
-    this.editTask.emit(this.listOfData);
-    console.log('edit service', this.listOfData);
+    this.editTask.next(this.listOfData);
+    //console.log('edit service', this.listOfData);
   }
 }

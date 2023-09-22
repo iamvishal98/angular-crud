@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -7,27 +7,40 @@ import {
 } from '@angular/forms';
 import { TodoList } from './Interface';
 import { ListService } from './services/list.service';
-
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private fb: NonNullableFormBuilder,
     private listService: ListService
   ) {}
 
-  @Input() updatedTask!: TodoList;
   isVisible = false;
+  private editTaskSubs!: Subscription;
   index: number = 4; // MOCK UNIQUE ID FOR TODO ITEM
+  listOfData: TodoList[] = [];
 
   currentSelectedTask: TodoList = {
     id: 0,
     description: '',
     createdOn: new Date(),
   };
+
+  ngOnInit(): void {
+    this.listOfData = this.listService.listOfData;
+    this.editTaskSubs = this.listService.editTask.subscribe(
+      (value: TodoList[]) => {
+        this.listOfData = value;
+      }
+    );
+  }
+  ngOnDestroy(): void {
+    this.editTaskSubs.unsubscribe();
+  }
 
   validateForm: FormGroup<{
     description: FormControl<string>;

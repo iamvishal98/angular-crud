@@ -30,13 +30,17 @@
   </div>
   <!-- TABLE LIST -->
   <app-todolist
+    [todoData]="listOfData"
     (openModal)="showModal($event)"
   ></app-todolist>
+
+<h1>Angular Table</h1>
+<app-table></app-table>
 </div>
 <!-- MODAL -->
 <app-modal
   [isModalVisible]="isVisible"
   [currentTask]="currentSelectedTask"
   (closeModal)="handleCancel($event)"
- 
 ></app-modal>
+
