@@ -1,27 +1,28 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { TodoList } from '../Interface';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ListService {
   listOfData: TodoList[] = [
     {
-      id: 1,
+      id: '1',
       description: 'task#1',
       createdOn: new Date('2023-09-18'),
     },
     {
-      id: 2,
+      id: '2',
       description: 'task#2',
       createdOn: new Date('2023-09-19'),
     },
     {
-      id: 3,
+      id: '3',
       description: 'task#3',
       createdOn: new Date('2023-09-20'),
     },
   ];
 
-  editTask = new EventEmitter<TodoList[]>();
+  editTask = new Subject<TodoList[]>();
 
   addToDo(task: TodoList) {
     this.listOfData.push(task);
@@ -30,7 +31,6 @@ export class ListService {
   deleteToDo(task: TodoList) {
     const index = this.listOfData.findIndex((obj) => obj.id === task.id);
     this.listOfData.splice(index, 1);
-    console.log('delete service', this.listOfData);
   }
 
   editToDo(updatedTask: TodoList) {
@@ -41,7 +41,7 @@ export class ListService {
       return item;
     });
     this.listOfData = newList;
-    this.editTask.emit(this.listOfData);
-    console.log('edit service', this.listOfData);
+    this.editTask.next(this.listOfData);
+    //console.log('edit service', this.listOfData);
   }
 }

@@ -12,6 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AntdModule } from './ant.module';
 import { TodolistComponent } from './todolist/todolist.component';
 import { ModalComponent } from './modal/modal.component';
+import { TableComponent } from './table/table.component';
+import { DataTablesModule } from 'angular-datatables';
+import { PopoverComponent } from './table/popover/popover.component';
 
 registerLocaleData(en);
 
@@ -20,6 +23,8 @@ registerLocaleData(en);
     AppComponent,
     TodolistComponent,
     ModalComponent,
+    TableComponent,
+    PopoverComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,8 @@ registerLocaleData(en);
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AntdModule
+    AntdModule,
+    DataTablesModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

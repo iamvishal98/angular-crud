@@ -6,6 +6,8 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @NgModule({
     exports : [
@@ -16,6 +18,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
         NzFormModule,
         NzModalModule,
         NzInputModule,
+        NzPopoverModule,
+        NzSpinModule
     ]
 })
 export class AntdModule {}

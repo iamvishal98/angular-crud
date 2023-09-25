@@ -1,5 +1,5 @@
 <div>
-  <nz-table #basicTable [nzData]="tasks" [nzShowPagination]="false">
+  <nz-table #basicTable [nzData]="todoData" [nzShowPagination]="false" [nzLoading]="loading">
     <thead>
       <tr>
         <th>Id</th>
@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of tasks">
+      <tr *ngFor="let data of todoData">
         <td>{{ data.id }}</td>
         <td>{{ data.description }}</td>
         <td>{{ data.createdOn }}</td>

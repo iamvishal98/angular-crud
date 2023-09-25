@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
+.Image-tab {
+    height: 100px;
+    width: 100px;
+}
+
+div.dataTables_wrapper div.dt-row {
+    position: static !important;
+}
