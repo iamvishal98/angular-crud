@@ -49,4 +49,25 @@
     </tbody>
   </table> -->
 
+  <div *ngIf="visible">
+    <p>{{label}}</p>
+    <p>{{value}}</p>
+    <hr />
+    <a (click)="Close()">Close Me</a>
+  </div>
+
   <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
+  <!-- <a
+  nz-button
+  nzType="link" 
+  nz-popover
+  nzPopoverTitle="Title"
+  [(nzPopoverVisible)]="visible"
+  nzPopoverTrigger="click"
+  [nzPopoverContent]="contentTemplate"
+>
+  Click me
+</a>
+  <ng-template #contentTemplate>
+    <a (click)="clickMe()">Close</a>
+  </ng-template> -->
