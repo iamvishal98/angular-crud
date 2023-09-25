@@ -4,3 +4,7 @@
     height: 100px;
     width: 100px;
 }
+
+div.dataTables_wrapper div.dt-row {
+    position: static !important;
+}

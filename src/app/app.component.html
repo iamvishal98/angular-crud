@@ -32,6 +32,8 @@
   <app-todolist
     [todoData]="listOfData"
     (openModal)="showModal($event)"
+    (deleteData)="deleteData($event)"
+    [loading]="isDataLoading"
   ></app-todolist>
 
 <h1>Angular Table</h1>
@@ -42,5 +44,6 @@
   [isModalVisible]="isVisible"
   [currentTask]="currentSelectedTask"
   (closeModal)="handleCancel($event)"
+  (updateTask)="handleUpdate($event)"
 ></app-modal>
 

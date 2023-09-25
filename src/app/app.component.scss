@@ -18,3 +18,15 @@
         margin: 0.5rem;
     }
 }
+
+@media screen and (max-width: '1024px') {
+    .wrapper{
+        padding: 4rem 10rem;
+    }    
+}
+
+@media screen and (max-width: '768px') {
+    .wrapper{
+        padding: 2rem 4rem;
+    }    
+}

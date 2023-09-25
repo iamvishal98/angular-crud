@@ -1,5 +1,5 @@
 export interface TodoList {
-    id: number;
+    id: string;
     description:string;
     createdOn: Date;
 }

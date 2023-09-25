@@ -14,6 +14,7 @@ import { TodolistComponent } from './todolist/todolist.component';
 import { ModalComponent } from './modal/modal.component';
 import { TableComponent } from './table/table.component';
 import { DataTablesModule } from 'angular-datatables';
+import { PopoverComponent } from './table/popover/popover.component';
 
 registerLocaleData(en);
 
@@ -23,6 +24,7 @@ registerLocaleData(en);
     TodolistComponent,
     ModalComponent,
     TableComponent,
+    PopoverComponent,
   ],
   imports: [
     BrowserModule,
