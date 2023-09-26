@@ -49,13 +49,13 @@
     </tbody>
   </table> -->
 
-  <div *ngIf="visible">
+  <!-- <div *ngIf="visible">
     <p>{{label}}</p>
     <p>{{value}}</p>
     <hr />
     <a (click)="Close()">Close Me</a>
-  </div>
-
+  </div> -->
+  <button nz-button nzType="primary" (click)="handleNavigation()">Go back to app</button>
   <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
   <!-- <a
   nz-button

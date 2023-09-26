@@ -1,0 +1,42 @@
+<h1 nz-typography [ngClass]="'header'">To-Do App</h1>
+  
+<div [ngClass]="'add-todo-form'">
+  <form
+    nz-form
+    [nzLayout]="'inline'"
+    [formGroup]="validateForm"
+    class="login-form"
+    (ngSubmit)="submitForm()"
+  >
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your task!">
+        <input
+          type="text"
+          nz-input
+          formControlName="description"
+          placeholder="Your Task here.."
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <button
+      nz-button
+      class="login-form-button login-form-margin"
+      [nzType]="'primary'"
+    >
+      Add Task
+    </button>
+  </form>
+</div>
+<app-todolist
+  [todoData]="listOfData"
+  (openModal)="showModal($event)"
+  (deleteData)="deleteData($event)"
+  [loading]="isDataLoading"
+></app-todolist>
+
+<app-modal
+  [isModalVisible]="isVisible"
+  [currentTask]="currentSelectedTask"
+  (closeModal)="handleCancel($event)"
+  (updateTask)="handleUpdate($event)"
+></app-modal>

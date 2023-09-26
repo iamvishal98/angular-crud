@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of todoData">
+      <tr *ngFor="let data of todoData" >
         <td>{{ data.id }}</td>
         <td>{{ data.description }}</td>
         <td>{{ data.createdOn }}</td>
@@ -24,9 +24,12 @@
           </button>
           <button
             nz-button
+            nz-popconfirm
+            nzPopconfirmTitle="Are you sure delete this task?"
+            nzPopconfirmPlacement="bottom"
             nzDanger
             nzShape="round"
-            (click)="deleteHandler(data)"
+            (nzOnConfirm)="deleteHandler(data)"
           >
             Delete
           </button>

@@ -17,6 +17,26 @@
     button {
         margin: 0.5rem;
     }
+
+    .nav-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid transparent;
+        box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    
+        .nav-link {
+            color: rgb(25, 24, 24); 
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+        .active-nav {
+            border: 1px solid #9e9e9e;
+            color: #1890ff;
+        }
+    }
 }
 
 @media screen and (max-width: '1024px') {
