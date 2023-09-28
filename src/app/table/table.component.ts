@@ -72,13 +72,15 @@ export class TableComponent implements OnInit {
       columns,
       scrollX: true,
       deferRender: true,
+      pagingType:"simple",
       rowCallback: (row: Node, data: any, index: number) => {
         const self = this;
         $('.itemId', row).on('click', () => {
-          this.router.navigate([`ang-tables/user/${data.textId}`])
+          //this.router.navigate([`ang-tables/user/${data.textId}`])
+          this.router.navigate(['dashboard/ang-tables',data.textId])
         });
         $('td:eq(2)', row).on('click', () => {
-          this.router.navigate([`ang-tables/user/${data.textId}`])
+          this.router.navigate([`dashboard/ang-tables/${data.textId}`])
         });
         // return row;
         // $('td:eq(9)', row).html( `<img src='${data.image1}' alt='image-1'/>` );

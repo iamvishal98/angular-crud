@@ -20,8 +20,12 @@ export class TodoComponent implements OnInit {
     private apiService: ApiService,
     private messageService: MessageService
   ) {}
+
+  user = this.apiService.currentUser?.displayName
 ngOnInit(): void {
   this.fetchData();
+  //console.log(this.apiService.currentUser?.displayName);
+  
 }
   isVisible = false;
   index: number = 4; // MOCK UNIQUE ID FOR TODO ITEM
@@ -60,12 +64,10 @@ ngOnInit(): void {
         createdOn: new Date(),
       };
       this.index++;
-      //this.listService.addToDo(toDo);
-      //console.log('from app componnent', this.listService.listOfData);
       this.apiService.addToDo(toDo).subscribe(
         () => {
           this.fetchData();
-           
+           this.messageService.successMessage('task added successfully');
         },
         (error) => {
           this.messageService.errorMessage("something went wrong");

@@ -18,8 +18,6 @@ export class TodolistComponent {
 
   //DELETE TASK
   deleteHandler(task: TodoList) {
-    //this.listService.deleteToDo(task);
-    //this.apiService.deleteToDo(task.id).subscribe((res) => console.log(res));
     this.deleteData.emit(task);
   }
 

@@ -1,0 +1,22 @@
+<div class="nav-bar" *ngIf="!currentRoute">
+  <div class="nav-links">
+    <a
+      class="nav-link"
+      routerLink="/dashboard"
+      routerLinkActive="active-nav"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >To App</a
+    >
+    <a
+      class="nav-link"
+      routerLink="/dashboard/ang-tables"
+      routerLinkActive="active-nav"
+      >Angular Datatables</a
+    >
+    <a class="nav-link" href="#" routerLinkActive="active-nav">High Charts</a>
+  </div>
+  <button nz-button nzType="primary" (click)="handleSignOut()">Sign Out</button>
+</div>
+<div class="wrapper">
+  <router-outlet></router-outlet>
+</div>

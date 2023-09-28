@@ -1,15 +1,11 @@
-<div class="wrapper">
-  <div class="nav-links">
+
+  <!-- <div class="nav-links" *ngIf="!currentRoute">
     <a class="nav-link" routerLink="/" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">To App</a>
     <a class="nav-link" routerLink="/ang-tables" routerLinkActive="active-nav">Angular Datatables</a>
     <a class="nav-link" href="#" routerLinkActive="active-nav">High Charts</a>
-  </div>
+  </div> -->
+  <router-outlet></router-outlet>
 
-  <div> 
-    <router-outlet></router-outlet>
-  </div>
-
-</div>
   <!-- <h1 nz-typography [ngClass]="'header'">To-Do App</h1>
   
   <div [ngClass]="'add-todo-form'">
