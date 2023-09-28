@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { columns } from './columns';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  constructor(private apiService: ApiService, private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
   allData: any = [];
   dtOptions: DataTables.Settings = {};
 
@@ -16,13 +17,19 @@ export class TableComponent implements OnInit {
   label: string= '';
   value: string='';
 
-  Close(): void {
-    this.visible = false;
-  }
-  Open(data: any, colind: number): void {
-    this.visible=true;
-    this.label = columns[colind].title
-    this.value=data;
+  // Close(): void {
+  //   this.visible = false;
+  // }
+  // Open(data: any, colind: number): void {
+  //   this.visible=true;
+  //   this.label = columns[colind].title
+  //   this.value=data;
+  // }
+
+  handleNavigation(){
+    this.router.navigate(['/'])
+    //router.naigate does know root url, hence specifying relative path work which is not the case in routerLink
+   //this.router.navigate(['/ang-tables'],{relativeTo:this.route}) 
   }
 
   ngOnInit(): void {
@@ -31,7 +38,6 @@ export class TableComponent implements OnInit {
         this.http
           .get('../assets/demo-data.json', dataTablesParameters)
           .subscribe((resp: any) => {
-            //console.log(Math.floor((Date.now() / 1000) % 60));
             const formattedData = resp.data.map((item: any) => {
               return {
                 id: `<a class="itemId">${item.id}</a>`,
@@ -61,20 +67,20 @@ export class TableComponent implements OnInit {
               recordsFiltered: formattedData.length,
               data: formattedData,
             });
-
-            //console.log(Math.floor((Date.now() / 1000) % 60));
           });
       },
       columns,
       scrollX: true,
       deferRender: true,
+      pagingType:"simple",
       rowCallback: (row: Node, data: any, index: number) => {
         const self = this;
         $('.itemId', row).on('click', () => {
-          this.Open(data.textId,0);
+          //this.router.navigate([`ang-tables/user/${data.textId}`])
+          this.router.navigate(['dashboard/ang-tables',data.textId])
         });
         $('td:eq(2)', row).on('click', () => {
-         this.Open(data.textName,2);
+          this.router.navigate([`dashboard/ang-tables/${data.textId}`])
         });
         // return row;
         // $('td:eq(9)', row).html( `<img src='${data.image1}' alt='image-1'/>` );

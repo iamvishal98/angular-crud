@@ -1,6 +1,13 @@
-<div class="wrapper">
-  <h1 nz-typography [ngClass]="'header'">To-Do App</h1>
-  <!-- ADD TODO ITEM -->
+
+  <!-- <div class="nav-links" *ngIf="!currentRoute">
+    <a class="nav-link" routerLink="/" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">To App</a>
+    <a class="nav-link" routerLink="/ang-tables" routerLinkActive="active-nav">Angular Datatables</a>
+    <a class="nav-link" href="#" routerLinkActive="active-nav">High Charts</a>
+  </div> -->
+  <router-outlet></router-outlet>
+
+  <!-- <h1 nz-typography [ngClass]="'header'">To-Do App</h1>
+  
   <div [ngClass]="'add-todo-form'">
     <form
       nz-form
@@ -28,7 +35,43 @@
       </button>
     </form>
   </div>
-  <!-- TABLE LIST -->
+  <app-todolist
+    [todoData]="listOfData"
+    (openModal)="showModal($event)"
+    (deleteData)="deleteData($event)"
+    [loading]="isDataLoading"
+  ></app-todolist> -->
+
+  <!-- <h1 nz-typography [ngClass]="'header'">To-Do App</h1>
+  
+  <div [ngClass]="'add-todo-form'">
+    <form
+      nz-form
+      [nzLayout]="'inline'"
+      [formGroup]="validateForm"
+      class="login-form"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your task!">
+          <input
+            type="text"
+            nz-input
+            formControlName="description"
+            placeholder="Your Task here.."
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <button
+        nz-button
+        class="login-form-button login-form-margin"
+        [nzType]="'primary'"
+      >
+        Add Task
+      </button>
+    </form>
+  </div>
+
   <app-todolist
     [todoData]="listOfData"
     (openModal)="showModal($event)"
@@ -37,13 +80,13 @@
   ></app-todolist>
 
 <h1>Angular Table</h1>
-<app-table></app-table>
-</div>
-<!-- MODAL -->
-<app-modal
+<app-table></app-table> -->
+
+
+<!-- <app-modal
   [isModalVisible]="isVisible"
   [currentTask]="currentSelectedTask"
   (closeModal)="handleCancel($event)"
   (updateTask)="handleUpdate($event)"
-></app-modal>
+></app-modal> -->
 

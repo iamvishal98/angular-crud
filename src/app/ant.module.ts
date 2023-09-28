@@ -8,6 +8,10 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 @NgModule({
     exports : [
@@ -19,7 +23,11 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
         NzModalModule,
         NzInputModule,
         NzPopoverModule,
-        NzSpinModule
+        NzSpinModule,
+        NzMessageModule,
+        NzPopconfirmModule,
+        NzDescriptionsModule,
+        NzGridModule
     ]
 })
 export class AntdModule {}
