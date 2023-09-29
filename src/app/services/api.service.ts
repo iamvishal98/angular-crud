@@ -16,37 +16,23 @@ export class ApiService {
     return JSON.parse(localStorage.getItem("user")!) || null;
   }
 
-  fetchData() {
-    return this.http.get("../assets/demo-data.json");
-  }
-
-  fetchUserData(userid: string) {
-    return this.http.get("../assets/demo-data.json").pipe(
-      map((resp: any) => {
-        console.log(resp);
-        return resp.data.filter((item: any) => item.id === userid);
-      })
-    );
-  }
+  Url = "https://crud-2aa5a-default-rtdb.firebaseio.com";
 
   addToDo(data: TodoList) {
     return this.http.post<TodoList>(
-      `https://crud-2aa5a-default-rtdb.firebaseio.com/${this.currentUser?.uid}/post.json`,
+      `${this.Url}/${this.currentUser?.uid}/post.json`,
       data
     );
   }
 
   getToDo() {
     return this.http
-      .get<firebaseData>(
-        `https://crud-2aa5a-default-rtdb.firebaseio.com/${this.currentUser?.uid}/post.json`,
-        {
-          headers: new HttpHeaders({
-            "Access-Control-Allow-Origin": "*",
-          }),
-          params: new HttpParams().set("print", "pretty"),
-        }
-      )
+      .get<firebaseData>(`${this.Url}/${this.currentUser?.uid}/post.json`, {
+        headers: new HttpHeaders({
+          "Access-Control-Allow-Origin": "*",
+        }),
+        params: new HttpParams().set("print", "pretty"),
+      })
       .pipe(
         map((response: firebaseData) => {
           const todoListData = [];
@@ -65,14 +51,28 @@ export class ApiService {
 
   deleteToDo(id: string) {
     return this.http.delete<TodoList>(
-      `https://crud-2aa5a-default-rtdb.firebaseio.com/${this.currentUser?.uid}/post/${id}.json`
+      `${this.Url}/${this.currentUser?.uid}/post/${id}.json`
     );
   }
 
   editToDO(data: TodoList) {
     return this.http.patch(
-      `https://crud-2aa5a-default-rtdb.firebaseio.com//${this.currentUser?.uid}/post/${data.id}.json`,
+      `${this.Url}/${this.currentUser?.uid}/post/${data.id}.json`,
       { description: data.description }
+    );
+  }
+
+  //for Datables
+  fetchData() {
+    return this.http.get("../assets/demo-data.json");
+  }
+
+  fetchUserData(userid: string) {
+    return this.http.get("../assets/demo-data.json").pipe(
+      map((resp: any) => {
+        console.log(resp);
+        return resp.data.filter((item: any) => item.id === userid);
+      })
     );
   }
 }
