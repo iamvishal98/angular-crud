@@ -1,28 +1,40 @@
 <div>
-  <nz-table #basicTable [nzData]="todoData" [nzShowPagination]="false" [nzLoading]="loading">
+  <nz-table
+    #basicTable
+    [nzData]="todoData"
+    [nzShowPagination]="false"
+    [nzLoading]="loading"
+  >
     <thead>
       <tr>
-        <th>Id</th>
+        <!-- <th>Id</th> -->
         <th>Task</th>
         <th>Created On</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of todoData" >
-        <td>{{ data.id }}</td>
+      <tr *ngFor="let data of todoData" [ngStyle]="{ 'background-color': data.completed ? '#fafafa' : 'inherit' }">
+        <!-- <td>{{ data.id }}</td> -->
         <td>{{ data.description }}</td>
-        <td>{{ data.createdOn }}</td>
+        <td>{{ data.createdOn | date }}</td>
         <td>
-          <button
+          <!-- <button
             nz-button
             nzType="primary"
             nzShape="round"
             (click)="modalHandler(data)"
           >
             Edit
-          </button>
-          <button
+          </button> -->
+          <span
+            nz-icon
+            nzType="edit"
+            nzTheme="outline"
+            class="btn edit-btn"
+            (click)="modalHandler(data)"
+          ></span>
+          <!-- <button
             nz-button
             nz-popconfirm
             nzPopconfirmTitle="Are you sure delete this task?"
@@ -32,7 +44,29 @@
             (nzOnConfirm)="deleteHandler(data)"
           >
             Delete
-          </button>
+          </button> -->
+          <span
+            nz-icon
+            nzType="delete"
+            nzTheme="outline"
+            class="btn delete-btn"
+            nz-popconfirm
+            nzPopconfirmTitle="Are you sure delete this task?"
+            nzPopconfirmPlacement="bottom"
+            (nzOnConfirm)="deleteHandler(data)"
+          ></span>
+
+          <span
+            nz-icon
+            nzType="check-square"
+            nzTheme="outline"
+            class="btn check-btn"
+            (click)="checkhandler(data)"
+            [ngStyle]="{ color: data.completed ? 'green' : 'inherit' }"
+            nz-tooltip
+            [nzTooltipTitle]= "tooltipTitle(data)"
+            nzTooltipPlacement="bottom"
+          ></span>
         </td>
       </tr>
     </tbody>

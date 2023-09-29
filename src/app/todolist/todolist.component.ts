@@ -12,13 +12,40 @@ export class TodolistComponent {
 
   @Output() openModal = new EventEmitter<TodoList>();
   @Output() deleteData = new EventEmitter<TodoList>();
+  @Output() completedTask = new EventEmitter<TodoList>();
   @Input() todoData!: TodoList[];
   @Input() loading : boolean = false;
   isVisible = false;
 
+  tooltipTitle(task: TodoList): string {
+    return task.completed? "mark as incomplete" : "mark as complete"
+  }
   //DELETE TASK
   deleteHandler(task: TodoList) {
     this.deleteData.emit(task);
+  }
+
+  checkhandler(data: TodoList) {
+   // console.log('checked',data)
+    // this.todoData = this.todoData.map((item: any) => {
+    //   if(item.id === data.id){
+    //     if(data.completed) return {...item, completed:false}
+    //     else return {...item, completed:true}
+    //   }
+    //   else
+    //     return item;
+    // }
+    // )
+   // console.log('clicked')
+    if(data.completed)
+      data={...data,completed:false}
+    else 
+      data={...data,completed:true}
+
+      this.completedTask.emit(data);
+    //  console.log(data)
+
+    //this.apiService.checkToDO(data).subscribe((val) => console.log(val));
   }
 
   //MODAL OPERATIONS

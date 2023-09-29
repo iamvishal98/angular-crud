@@ -33,6 +33,7 @@ export class ModalComponent implements OnChanges {
     id: '0',
     description: '',
     createdOn: new Date(),
+    completed:false
   };
   @Output() closeModal = new EventEmitter();
   @Output() updateTask = new EventEmitter<TodoList>();

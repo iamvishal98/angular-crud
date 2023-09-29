@@ -12,6 +12,10 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
 @NgModule({
     exports : [
@@ -27,7 +31,11 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
         NzMessageModule,
         NzPopconfirmModule,
         NzDescriptionsModule,
-        NzGridModule
+        NzGridModule,
+        NzIconModule,
+        NzToolTipModule,
+        NzTabsModule,
+        NzResultModule
     ]
 })
 export class AntdModule {}

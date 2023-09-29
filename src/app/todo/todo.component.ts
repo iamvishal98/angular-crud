@@ -35,6 +35,7 @@ ngOnInit(): void {
     id: '',
     description: '',
     createdOn: new Date(),
+    completed:false
   };
 
   validateForm: FormGroup<{
@@ -62,6 +63,7 @@ ngOnInit(): void {
         id: "this.index",
         description: `${this.validateForm.value.description}`,
         createdOn: new Date(),
+        completed:false
       };
       this.index++;
       this.apiService.addToDo(toDo).subscribe(
@@ -98,6 +100,16 @@ ngOnInit(): void {
       this.fetchData();
       this.messageService.successMessage('Task Deleted');
     });
+  }
+  completedTask(task: TodoList) {
+    this.apiService.checkToDO(task).subscribe(() => {
+      this.fetchData();
+      if(task.completed)
+        this.messageService.successMessage('Marked as Complete');
+      else
+      this.messageService.successMessage('Marked as Incomplete');
+
+    })
   }
 
   handleUpdate(task: TodoList) {

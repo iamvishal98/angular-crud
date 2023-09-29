@@ -61,6 +61,12 @@ export class ApiService {
       { description: data.description }
     );
   }
+  checkToDO(data: TodoList) {
+    return this.http.patch(
+      `${this.Url}/${this.currentUser?.uid}/post/${data.id}.json`,
+      { completed: data.completed }
+    );
+  }
 
   //for Datables
   fetchData() {

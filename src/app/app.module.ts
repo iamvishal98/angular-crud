@@ -24,6 +24,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { SignupPageComponent } from './signup-page/signup-page.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 registerLocaleData(en);
@@ -40,6 +42,7 @@ registerLocaleData(en);
     LoginPageComponent,
     DashboardComponent,
     SignupPageComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     AntdModule,
     DataTablesModule,
+    LayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
 
   ],

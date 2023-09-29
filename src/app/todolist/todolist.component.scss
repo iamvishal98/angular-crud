@@ -2,3 +2,32 @@
         margin: 0.5rem;
         z-index: 10;
     }
+
+.btn {
+  font-size: 25px;
+  padding: 5px;
+
+  &:hover {
+    cursor: pointer;
+  } 
+}
+
+.delete-btn {
+  &:hover {
+    color: red;
+    transition: all 0.3s ease;
+
+  } 
+}
+
+.edit-btn {
+  &:hover {
+    color: #c4ae01;
+    transition: all 0.3s ease;
+
+  } 
+}
+
+td {
+  text-overflow: ellipsis;
+}

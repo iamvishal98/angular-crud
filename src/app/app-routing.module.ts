@@ -12,6 +12,7 @@ import {
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { SignupPageComponent } from "./signup-page/signup-page.component";
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
@@ -21,6 +22,7 @@ const routes: Routes = [
     children: [
       { path: "login", component: LoginPageComponent, pathMatch: "full" },
       { path: "signup", component: SignupPageComponent },
+      { path: "forgot-password", component: ForgotPasswordComponent },
     ],
   },
   {
@@ -39,7 +41,7 @@ const routes: Routes = [
     ],
   },
   { path: "not-found", component: PageNotFoundComponent },
-  {path:'**', redirectTo:'not-found'}
+  { path: "**", redirectTo: "not-found" },
 ];
 
 @NgModule({
