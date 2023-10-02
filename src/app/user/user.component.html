@@ -1,4 +1,4 @@
-<div *ngIf="user?.length>0">
+<div *ngIf="user?.length > 0">
   <button nz-button nzType="primary" (click)="handleNavigation()">Back</button>
   <nz-descriptions
     nzTitle="User Info"
@@ -26,7 +26,7 @@
   </nz-descriptions>
 </div>
 
-<div *ngIf="user?.length===0">
-  <p>Nothing to show here </p>
+<div *ngIf="user?.length === 0">
+  <p>Nothing to show here</p>
   <button nz-button nzType="primary" (click)="handleNavigation()">Back</button>
 </div>

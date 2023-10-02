@@ -39,8 +39,12 @@ export class LoginPageComponent {
     }
   }
 
-  handleNavigation() {
+  handleNavigationRegister() {
     this.router.navigate(["/auth/signup"]);
+  }
+
+  handleNavigationReset() {
+    this.router.navigate(["/auth/forgot-password"]);
   }
 
   constructor(

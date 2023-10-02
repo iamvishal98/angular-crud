@@ -1,27 +1,27 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { TodoList } from '../Interface';
-import { Subject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { TodoList } from "../Interface";
+import { Subject } from "rxjs";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class ListService {
   listOfData: TodoList[] = [
     {
-      id: '1',
-      description: 'task#1',
-      createdOn: new Date('2023-09-18'),
-      completed:false
+      id: "1",
+      description: "task#1",
+      createdOn: new Date("2023-09-18"),
+      completed: false,
     },
     {
-      id: '2',
-      description: 'task#2',
-      createdOn: new Date('2023-09-19'),
-      completed:false
+      id: "2",
+      description: "task#2",
+      createdOn: new Date("2023-09-19"),
+      completed: false,
     },
     {
-      id: '3',
-      description: 'task#3',
-      createdOn: new Date('2023-09-20'),
-      completed:false
+      id: "3",
+      description: "task#3",
+      createdOn: new Date("2023-09-20"),
+      completed: false,
     },
   ];
 

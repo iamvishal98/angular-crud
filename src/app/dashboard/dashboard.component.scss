@@ -1,3 +1,4 @@
+@import "../../mixins.scss";
 .nav-bar {
   position: relative;
   display: flex;
@@ -23,47 +24,13 @@
     }
     .active-nav {
       color: #1890ff;
-       
-      // &::after {
-      //   content: '';
-      //   border-bottom: 1px solid blue;
-      //   display: block;
-      //   //transition: all 0.6s ease;
-      //   width: 100%;
-      // }
-      // &::before {
-      //   content: '';
-      //   border-bottom: 1px solid blue;
-      //   display: block;
-      //   width: 0;
-      //   //transition: all 0.6s ease;
-      // }
     }
-
-    // .slider-border {
-    //   position: absolute;
-    //   bottom: 0;
-    //   left: 100px;
-    //   height: 2px;
-    //   background-color: blue;
-    //   transform-origin: left;
-    //   transition: all 0.3s ease;
-    //   width: 100px;
-    //   //transform: translateX(600);
-    // }
+    @include sm {
+      max-width: 100%;
+    }
   }
-}
 
-.hamburger-menu,.close-menu {
-display: none;
-}
-.wrapper {
-  padding: 50px;
-}
-
-
-@media screen and (max-width:'500px') {
-  .nav-bar {
+  @include sm {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -73,21 +40,22 @@ display: none;
     padding: 10px 0;
     align-items: flex-start;
     left: -1000px;
-    .nav-links {
-    max-width: 100%;
-    }
-
-    button {
-      margin-left: 20px;
-    }
   }
+}
 
-  .mobile {
-    left: 0;
-    transition: all 0.3s ease;
-    height: 100%;
+.hamburger-menu {
+  display: none;
+  @include sm {
+    display: flex;
+    font-size: 25px;
+    margin-left: 10px;
+    padding-top: 10px;
+    cursor: pointer;
   }
-  .close-menu {
+}
+.close-menu {
+  display: none;
+  @include sm {
     display: flex;
     position: absolute;
     top: 4px;
@@ -95,13 +63,21 @@ display: none;
     font-size: 20px;
     cursor: pointer;
   }
+}
+.wrapper {
+  padding: 50px;
+}
 
-  .hamburger-menu {
-    display: flex;
-    font-size: 25px;
-    margin-left: 10px;
-    padding-top: 10px;
-    cursor: pointer;
+button {
+  @include sm {
+    margin-left: 20px;
   }
-  
+}
+
+.mobile {
+  @include sm {
+    left: 0;
+    transition: all 0.3s ease;
+    height: 100%;
+  }
 }

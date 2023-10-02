@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
-import { HttpClient } from '@angular/common/http';
-import { columns } from './columns';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { columns } from "./columns";
+import { ActivatedRoute, Router } from "@angular/router";
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+  selector: "app-table",
+  templateUrl: "./table.component.html",
+  styleUrls: ["./table.component.scss"],
 })
 export class TableComponent implements OnInit {
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
   allData: any = [];
   dtOptions: DataTables.Settings = {};
 
   visible: boolean = false;
-  label: string= '';
-  value: string='';
+  label: string = "";
+  value: string = "";
 
   // Close(): void {
   //   this.visible = false;
@@ -26,17 +29,17 @@ export class TableComponent implements OnInit {
   //   this.value=data;
   // }
 
-  handleNavigation(){
-    this.router.navigate(['/'])
+  handleNavigation() {
+    this.router.navigate(["/"]);
     //router.naigate does know root url, hence specifying relative path work which is not the case in routerLink
-   //this.router.navigate(['/ang-tables'],{relativeTo:this.route}) 
+    //this.router.navigate(['/ang-tables'],{relativeTo:this.route})
   }
 
   ngOnInit(): void {
     this.dtOptions = {
       ajax: (dataTablesParameters: any, callback: any) => {
         this.http
-          .get('../assets/demo-data.json', dataTablesParameters)
+          .get("../assets/demo-data.json", dataTablesParameters)
           .subscribe((resp: any) => {
             const formattedData = resp.data.map((item: any) => {
               return {
@@ -72,15 +75,15 @@ export class TableComponent implements OnInit {
       columns,
       scrollX: true,
       deferRender: true,
-      pagingType:"simple",
+      pagingType: "simple",
       rowCallback: (row: Node, data: any, index: number) => {
         const self = this;
-        $('.itemId', row).on('click', () => {
+        $(".itemId", row).on("click", () => {
           //this.router.navigate([`ang-tables/user/${data.textId}`])
-          this.router.navigate(['dashboard/ang-tables',data.textId])
+          this.router.navigate(["dashboard/ang-tables", data.textId]);
         });
-        $('td:eq(2)', row).on('click', () => {
-          this.router.navigate([`dashboard/ang-tables/${data.textId}`])
+        $("td:eq(2)", row).on("click", () => {
+          this.router.navigate([`dashboard/ang-tables/${data.textId}`]);
         });
         // return row;
         // $('td:eq(9)', row).html( `<img src='${data.image1}' alt='image-1'/>` );

@@ -3,11 +3,7 @@ import { NavigationEnd, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { filter } from "rxjs/operators";
 import { AuthService } from "../services/auth.service";
-//import { ResizedEvent } from 'angular-resize-event';
-import {
-  BreakpointObserver,
-  BreakpointState
-} from '@angular/cdk/layout';
+import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
 
 @Component({
   selector: "app-dashboard",
@@ -15,11 +11,15 @@ import {
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  constructor(private router: Router, private authService: AuthService,public breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    public breakpointObserver: BreakpointObserver
+  ) {}
   currentRoute: boolean = false;
   routeSubscribtion!: Subscription;
   isMobileMenu: boolean = false;
-  position: 'top' | 'right' | 'bottom' | 'left' = 'top'; 
+  position: "top" | "right" | "bottom" | "left" = "top";
   handleSignOut() {
     this.authService.Signout();
   }
@@ -35,22 +35,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.currentRoute = data.urlAfterRedirects === "/not-found";
       });
 
-      this.breakpointObserver.observe(['(max-width: 500px)']).subscribe((state: BreakpointState) => {
+    this.breakpointObserver
+      .observe(["(max-width: 500px)"])
+      .subscribe((state: BreakpointState) => {
         if (state.matches) {
-          this.position='left'
+          this.position = "left";
         } else {
-          this.position='top'
+          this.position = "top";
         }
-      })
+      });
   }
 
   ngOnDestroy(): void {
     this.routeSubscribtion.unsubscribe();
     this.breakpointObserver.ngOnDestroy();
   }
-
-  //  element = document.getElementsByClassName('.nav-link')[0];
-  //  clickhandler(){
-  //   console.log((this.element as any).offsetWidth  )
-  //  }
 }

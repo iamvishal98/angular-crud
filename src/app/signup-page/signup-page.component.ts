@@ -6,8 +6,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { AuthService } from "../services/auth.service";
-import { IAuth, ISignUp } from "../Interface";
-import { Route, Router } from "@angular/router";
+import { ISignUp } from "../Interface";
+import { Router } from "@angular/router";
 import { MessageService } from "../services/message.service";
 
 @Component({

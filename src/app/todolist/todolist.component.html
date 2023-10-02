@@ -7,26 +7,19 @@
   >
     <thead>
       <tr>
-        <!-- <th>Id</th> -->
         <th>Task</th>
         <th>Created On</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of todoData" [ngStyle]="{ 'background-color': data.completed ? '#fafafa' : 'inherit' }">
-        <!-- <td>{{ data.id }}</td> -->
+      <tr
+        *ngFor="let data of todoData"
+        [ngClass]="data.completed ? 'completed-task' : ''"
+      >
         <td>{{ data.description }}</td>
         <td>{{ data.createdOn | date }}</td>
         <td>
-          <!-- <button
-            nz-button
-            nzType="primary"
-            nzShape="round"
-            (click)="modalHandler(data)"
-          >
-            Edit
-          </button> -->
           <span
             nz-icon
             nzType="edit"
@@ -34,17 +27,6 @@
             class="btn edit-btn"
             (click)="modalHandler(data)"
           ></span>
-          <!-- <button
-            nz-button
-            nz-popconfirm
-            nzPopconfirmTitle="Are you sure delete this task?"
-            nzPopconfirmPlacement="bottom"
-            nzDanger
-            nzShape="round"
-            (nzOnConfirm)="deleteHandler(data)"
-          >
-            Delete
-          </button> -->
           <span
             nz-icon
             nzType="delete"
@@ -55,7 +37,6 @@
             nzPopconfirmPlacement="bottom"
             (nzOnConfirm)="deleteHandler(data)"
           ></span>
-
           <span
             nz-icon
             nzType="check-square"
@@ -64,7 +45,7 @@
             (click)="checkhandler(data)"
             [ngStyle]="{ color: data.completed ? 'green' : 'inherit' }"
             nz-tooltip
-            [nzTooltipTitle]= "tooltipTitle(data)"
+            [nzTooltipTitle]="tooltipTitle(data)"
             nzTooltipPlacement="bottom"
           ></span>
         </td>

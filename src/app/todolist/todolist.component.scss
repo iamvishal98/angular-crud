@@ -1,7 +1,14 @@
-  button {
-        margin: 0.5rem;
-        z-index: 10;
-    }
+.completed-task {
+  background-color: #fafafa;
+  text-decoration: line-through;
+  text-decoration-color: green;
+  transition: all 0.5s ease-in;
+}
+
+button {
+  margin: 0.5rem;
+  z-index: 10;
+}
 
 .btn {
   font-size: 25px;
@@ -9,23 +16,21 @@
 
   &:hover {
     cursor: pointer;
-  } 
+  }
 }
 
 .delete-btn {
   &:hover {
     color: red;
     transition: all 0.3s ease;
-
-  } 
+  }
 }
 
 .edit-btn {
   &:hover {
     color: #c4ae01;
     transition: all 0.3s ease;
-
-  } 
+  }
 }
 
 td {

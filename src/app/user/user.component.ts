@@ -2,7 +2,6 @@ import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ApiService } from "../services/api.service";
 import { Observable } from "rxjs";
-import { error } from "jquery";
 
 @Component({
   selector: "app-user",
@@ -25,9 +24,11 @@ export class UserComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.userId = this.route.snapshot.params["id"];
     this.apiService.fetchUserData(this.userId).subscribe((response) => {
-      if(response)
-        {this.user = response; console.log(this.user)}
-  });
+      if (response) {
+        this.user = response;
+        console.log(this.user);
+      }
+    });
   }
 
   ngAfterViewInit() {}

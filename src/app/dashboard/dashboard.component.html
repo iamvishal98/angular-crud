@@ -1,46 +1,60 @@
-<div [ngClass]=" isMobileMenu ? 'nav-bar mobile' : 'nav-bar'" *ngIf="!currentRoute">
+<!-- NAVIGATION TABS -->
+<div
+  [ngClass]="isMobileMenu ? 'nav-bar mobile' : 'nav-bar'"
+  *ngIf="!currentRoute"
+>
   <div class="nav-links">
-    <!-- <a
-      class="nav-link"
-      routerLink="/dashboard"
-      routerLinkActive="active-nav"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >To App</a
-    >
-    <a
-      class="nav-link"
-      routerLink="/dashboard/ang-tables"
-      routerLinkActive="active-nav"
-      >Angular Datatables</a
-    >
-    <a class="nav-link" href="#" routerLinkActive="active-nav">High Charts</a>
-
-    <div class="slider-border"></div> -->
-    <!-- <span nz-icon nzType="close-circle" nzTheme="outline" class="close-menu" (click)="handleClick()"></span> -->
     <nz-tabset nzLinkRouter [nzTabPosition]="position">
       <nz-tab>
-        <a *nzTabLink nz-tab-link [routerLink]="['/dashboard']"  routerLinkActive="active-nav" [routerLinkActiveOptions]="{ exact: true }">
+        <a
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['/dashboard']"
+          routerLinkActive="active-nav"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           Todo App
         </a>
       </nz-tab>
       <nz-tab>
-        <a *nzTabLink nz-tab-link [routerLink]="['/dashboard/ang-tables']" routerLinkActive="active-nav">
+        <a
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['/dashboard/ang-tables']"
+          routerLinkActive="active-nav"
+        >
           Datatables
         </a>
       </nz-tab>
       <nz-tab>
-        <a *nzTabLink nz-tab-link [routerLink]="['/']" routerLinkActive="active-nav">
+        <a
+          *nzTabLink
+          nz-tab-link
+          [routerLink]="['/']"
+          routerLinkActive="active-nav"
+        >
           Charts
         </a>
       </nz-tab>
     </nz-tabset>
-    
   </div>
   <button nz-button nzType="primary" (click)="handleSignOut()">Sign Out</button>
-  <span nz-icon nzType="close-circle" nzTheme="outline" class="close-menu" (click)="handleClick()"></span>
+  <span
+    nz-icon
+    nzType="close-circle"
+    nzTheme="outline"
+    class="close-menu"
+    (click)="handleClick()"
+  ></span>
 </div>
-<span nz-icon nzType="menu" nzTheme="outline" class="hamburger-menu" (click)="handleClick()"></span>
-<!-- <span nz-icon nzType="close-circle" nzTheme="outline" class="close-menu"></span> -->
+<span
+  nz-icon
+  nzType="menu"
+  nzTheme="outline"
+  class="hamburger-menu"
+  (click)="handleClick()"
+></span>
+<!-- ROUTES -->
 <div class="wrapper">
   <router-outlet></router-outlet>
 </div>

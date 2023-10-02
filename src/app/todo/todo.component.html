@@ -1,5 +1,5 @@
-<h1 nz-typography [ngClass]="'header'">Welcome {{user}}</h1>
-  
+<h1 nz-typography [ngClass]="'header'">Welcome {{ user }}</h1>
+
 <div [ngClass]="'add-todo-form'">
   <form
     nz-form
@@ -28,7 +28,7 @@
   </form>
 </div>
 
-<h3 nz-typography >Todo List</h3>
+<h3 nz-typography>Todo List</h3>
 <app-todolist
   [todoData]="listOfData"
   (openModal)="showModal($event)"

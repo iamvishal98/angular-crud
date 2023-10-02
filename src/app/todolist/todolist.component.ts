@@ -1,24 +1,27 @@
-import { Component, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';
-import { TodoList } from '../Interface';
-import { ListService } from '../services/list.service';
-import { ApiService } from '../services/api.service';
+import { Component, EventEmitter, Output, Input } from "@angular/core";
+import { TodoList } from "../Interface";
+import { ListService } from "../services/list.service";
+import { ApiService } from "../services/api.service";
 @Component({
-  selector: 'app-todolist',
-  templateUrl: './todolist.component.html',
-  styleUrls: ['./todolist.component.scss'],
+  selector: "app-todolist",
+  templateUrl: "./todolist.component.html",
+  styleUrls: ["./todolist.component.scss"],
 })
 export class TodolistComponent {
-  constructor(private listService: ListService, private apiService: ApiService) {}
+  constructor(
+    private listService: ListService,
+    private apiService: ApiService
+  ) {}
 
   @Output() openModal = new EventEmitter<TodoList>();
   @Output() deleteData = new EventEmitter<TodoList>();
   @Output() completedTask = new EventEmitter<TodoList>();
   @Input() todoData!: TodoList[];
-  @Input() loading : boolean = false;
+  @Input() loading: boolean = false;
   isVisible = false;
 
   tooltipTitle(task: TodoList): string {
-    return task.completed? "mark as incomplete" : "mark as complete"
+    return task.completed ? "mark as incomplete" : "mark as complete";
   }
   //DELETE TASK
   deleteHandler(task: TodoList) {
@@ -26,7 +29,7 @@ export class TodolistComponent {
   }
 
   checkhandler(data: TodoList) {
-   // console.log('checked',data)
+    // console.log('checked',data)
     // this.todoData = this.todoData.map((item: any) => {
     //   if(item.id === data.id){
     //     if(data.completed) return {...item, completed:false}
@@ -36,13 +39,11 @@ export class TodolistComponent {
     //     return item;
     // }
     // )
-   // console.log('clicked')
-    if(data.completed)
-      data={...data,completed:false}
-    else 
-      data={...data,completed:true}
+    // console.log('clicked')
+    if (data.completed) data = { ...data, completed: false };
+    else data = { ...data, completed: true };
 
-      this.completedTask.emit(data);
+    this.completedTask.emit(data);
     //  console.log(data)
 
     //this.apiService.checkToDO(data).subscribe((val) => console.log(val));
@@ -55,6 +56,4 @@ export class TodolistComponent {
   handleCancel(): void {
     this.isVisible = false;
   }
-
-
 }

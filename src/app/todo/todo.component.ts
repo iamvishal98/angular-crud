@@ -21,21 +21,20 @@ export class TodoComponent implements OnInit {
     private messageService: MessageService
   ) {}
 
-  user = this.apiService.currentUser?.displayName
-ngOnInit(): void {
-  this.fetchData();
-  //console.log(this.apiService.currentUser?.displayName);
-  
-}
+  user = this.apiService.currentUser?.displayName;
+  ngOnInit(): void {
+    this.fetchData();
+    //console.log(this.apiService.currentUser?.displayName);
+  }
   isVisible = false;
   index: number = 4; // MOCK UNIQUE ID FOR TODO ITEM
   isDataLoading = false;
   listOfData: TodoList[] = [];
   currentSelectedTask: TodoList = {
-    id: '',
-    description: '',
+    id: "",
+    description: "",
     createdOn: new Date(),
-    completed:false
+    completed: false,
   };
 
   validateForm: FormGroup<{
@@ -46,16 +45,17 @@ ngOnInit(): void {
 
   fetchData() {
     this.isDataLoading = true;
-    this.apiService.getToDo().subscribe((response) => {
-      this.listOfData = response;
-      this.isDataLoading = false;
-    },error => {
-      this.messageService.errorMessage(error);
-      this.isDataLoading=false;
-    });
+    this.apiService.getToDo().subscribe(
+      (response) => {
+        this.listOfData = response;
+        this.isDataLoading = false;
+      },
+      (error) => {
+        this.messageService.errorMessage(error);
+        this.isDataLoading = false;
+      }
+    );
   }
-
-
 
   submitForm() {
     if (this.validateForm.valid) {
@@ -63,13 +63,13 @@ ngOnInit(): void {
         id: "this.index",
         description: `${this.validateForm.value.description}`,
         createdOn: new Date(),
-        completed:false
+        completed: false,
       };
       this.index++;
       this.apiService.addToDo(toDo).subscribe(
         () => {
           this.fetchData();
-           this.messageService.successMessage('task added successfully');
+          this.messageService.successMessage("task added successfully");
         },
         (error) => {
           this.messageService.errorMessage("something went wrong");
@@ -98,26 +98,27 @@ ngOnInit(): void {
   deleteData(task: TodoList) {
     this.apiService.deleteToDo(task.id).subscribe(() => {
       this.fetchData();
-      this.messageService.successMessage('Task Deleted');
+      this.messageService.successMessage("Task Deleted");
     });
   }
   completedTask(task: TodoList) {
     this.apiService.checkToDO(task).subscribe(() => {
       this.fetchData();
-      if(task.completed)
-        this.messageService.successMessage('Marked as Complete');
-      else
-      this.messageService.successMessage('Marked as Incomplete');
-
-    })
+      if (task.completed)
+        this.messageService.successMessage("Marked as Complete");
+      else this.messageService.successMessage("Marked as Incomplete");
+    });
   }
 
   handleUpdate(task: TodoList) {
-    this.apiService.editToDO(task).subscribe(() => {
-      this.fetchData();
-      this.messageService.successMessage('Task Updated');
-    },error => {
-      this.messageService.errorMessage('something went wrong');
-    });
+    this.apiService.editToDO(task).subscribe(
+      () => {
+        this.fetchData();
+        this.messageService.successMessage("Task Updated");
+      },
+      (error) => {
+        this.messageService.errorMessage("something went wrong");
+      }
+    );
   }
 }

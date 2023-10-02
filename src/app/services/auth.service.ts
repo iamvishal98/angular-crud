@@ -1,5 +1,5 @@
-import { Inject, Injectable, NgZone, inject } from "@angular/core";
-import { IAuth, ICurrentUser, ISignUp, ResponseData } from "../Interface";
+import { Injectable } from "@angular/core";
+import { IAuth, ICurrentUser, ISignUp } from "../Interface";
 import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { MessageService } from "./message.service";
@@ -66,7 +66,10 @@ export class AuthService {
   resetPassword(email: string) {
     this.fireauth
       .sendPasswordResetEmail(email)
-      .then((resp) => localStorage.setItem('isSuccess',JSON.stringify(true)))
-      .catch((error) => {this.messageService.errorMessage(error); localStorage.setItem('isSuccess',JSON.stringify(false));});
+      .then((resp) => localStorage.setItem("isSuccess", JSON.stringify(true)))
+      .catch((error) => {
+        this.messageService.errorMessage(error);
+        localStorage.setItem("isSuccess", JSON.stringify(false));
+      });
   }
 }
