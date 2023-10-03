@@ -1,14 +1,14 @@
-import { AfterViewInit, Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ApiService } from "../services/api.service";
 import { Observable } from "rxjs";
+import { ApiService } from "src/app/services/api.service";
 
 @Component({
-  selector: "app-user",
-  templateUrl: "./user.component.html",
-  styleUrls: ["./user.component.scss"],
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit, AfterViewInit {
+export class UserComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
@@ -31,5 +31,5 @@ export class UserComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {}
+
 }

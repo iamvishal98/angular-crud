@@ -1,18 +1,16 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { TodoComponent } from "./todo/todo.component";
-import { TableComponent } from "./table/table.component";
-import { UserComponent } from "./user/user.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import {
   AuthGuard,
-  AuthGuardChild,
   CounterAuthGuard,
 } from "./auth-guard.service";
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { SignupPageComponent } from "./signup-page/signup-page.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+//import { ChartsComponent } from "./charts/charts.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
@@ -33,11 +31,9 @@ const routes: Routes = [
       { path: "", component: TodoComponent },
       {
         path: "ang-tables",
-        children: [
-          { path: "", component: TableComponent },
-          { path: ":id", component: UserComponent },
-        ],
+        loadChildren: () =>  import('./datatable/datatable.module').then((m) => m.DatatableModule)
       },
+      {path:'charts', loadChildren: () =>  import('./charts/charts.module').then((m) => m.ChartsModule)}
     ],
   },
   { path: "not-found", component: PageNotFoundComponent },

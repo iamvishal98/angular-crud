@@ -1,0 +1,155 @@
+{
+  "worldline": [
+    {
+      "date": "1 Oct 2023",
+      "name": "Worldline",
+      "allTransactions": 497,
+      "successTransactions": 357,
+      "acquirer": "worldline"
+    },
+    {
+      "date": "27 Sep 2023",
+      "name": "Worldline",
+      "allTransactions": 251,
+      "successTransactions": 191,
+      "acquirer": "worldline"
+    },
+    {
+      "date": "28 Sep 2023",
+      "name": "Worldline",
+      "allTransactions": 306,
+      "successTransactions": 242,
+      "acquirer": "worldline"
+    },
+    {
+      "date": "29 Sep 2023",
+      "name": "Worldline",
+      "allTransactions": 404,
+      "successTransactions": 354,
+      "acquirer": "worldline"
+    },
+    {
+      "date": "2 Oct 2023",
+      "name": "Worldline",
+      "allTransactions": 2930,
+      "successTransactions": 2319,
+      "acquirer": "worldline"
+    },
+    {
+      "date": "30 Sep 2023",
+      "name": "Worldline",
+      "allTransactions": 267,
+      "successTransactions": 181,
+      "acquirer": "worldline"
+    },
+    {
+      "date": "3 Oct 2023",
+      "name": "Worldline",
+      "allTransactions": 2360,
+      "successTransactions": 1807,
+      "acquirer": "worldline"
+    }
+  ],
+  "dalenys": [
+    {
+      "date": "1 Oct 2023",
+      "name": "Dalenys",
+      "allTransactions": 164,
+      "successTransactions": 133,
+      "acquirer": "dalenys"
+    },
+    {
+      "date": "27 Sep 2023",
+      "name": "Dalenys",
+      "allTransactions": 87,
+      "successTransactions": 69,
+      "acquirer": "dalenys"
+    },
+    {
+      "date": "28 Sep 2023",
+      "name": "Dalenys",
+      "allTransactions": 85,
+      "successTransactions": 72,
+      "acquirer": "dalenys"
+    },
+    {
+      "date": "29 Sep 2023",
+      "name": "Dalenys",
+      "allTransactions": 90,
+      "successTransactions": 69,
+      "acquirer": "dalenys"
+    },
+    {
+      "date": "30 Sep 2023",
+      "name": "Dalenys",
+      "allTransactions": 89,
+      "successTransactions": 59,
+      "acquirer": "dalenys"
+    },
+    {
+      "date": "3 Oct 2023",
+      "name": "Dalenys",
+      "allTransactions": 785,
+      "successTransactions": 548,
+      "acquirer": "dalenys"
+    }
+  ],
+  "truevo": [
+    {
+      "date": "1 Oct 2023",
+      "name": "Truevo",
+      "allTransactions": 79,
+      "successTransactions": 62,
+      "acquirer": "truevo"
+    },
+    {
+      "date": "27 Sep 2023",
+      "name": "Truevo",
+      "allTransactions": 26,
+      "successTransactions": 21,
+      "acquirer": "truevo"
+    },
+    {
+      "date": "28 Sep 2023",
+      "name": "Truevo",
+      "allTransactions": 53,
+      "successTransactions": 49,
+      "acquirer": "truevo"
+    },
+    {
+      "date": "29 Sep 2023",
+      "name": "Truevo",
+      "allTransactions": 29,
+      "successTransactions": 26,
+      "acquirer": "truevo"
+    },
+    {
+      "date": "2 Oct 2023",
+      "name": "Truevo",
+      "allTransactions": 366,
+      "successTransactions": 306,
+      "acquirer": "truevo"
+    },
+    {
+      "date": "30 Sep 2023",
+      "name": "Truevo",
+      "allTransactions": 42,
+      "successTransactions": 26,
+      "acquirer": "truevo"
+    },
+    {
+      "date": "3 Oct 2023",
+      "name": "Truevo",
+      "allTransactions": 316,
+      "successTransactions": 259,
+      "acquirer": "truevo"
+    },
+    {
+        "date": "4 Oct 2023",
+        "name": "Truevo",
+        "allTransactions": 616,
+        "successTransactions": 559,
+        "acquirer": "truevo"
+      }
+  ]
+}

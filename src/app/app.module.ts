@@ -12,12 +12,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AntdModule } from "./ant.module";
 import { TodolistComponent } from "./todolist/todolist.component";
 import { ModalComponent } from "./modal/modal.component";
-import { TableComponent } from "./table/table.component";
-import { DataTablesModule } from "angular-datatables";
+//import { TableComponent } from "./table/table.component";
+//import { DataTablesModule } from "angular-datatables";
 import { InterceptorService } from "./services/interceptor.service";
-import { RouterModule, Routes } from "@angular/router";
+//import { RouterModule, Routes } from "@angular/router";
 import { TodoComponent } from "./todo/todo.component";
-import { UserComponent } from "./user/user.component";
+//import { UserComponent } from "./user/user.component";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -26,6 +26,9 @@ import { environment } from '../environments/environment';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+//import { HighchartsChartModule } from 'highcharts-angular';
+//import { ChartsComponent } from './charts/charts.component';
+//import { BarchartComponent } from './charts/barchart/barchart.component';
 
 
 registerLocaleData(en);
@@ -35,14 +38,17 @@ registerLocaleData(en);
     AppComponent,
     TodolistComponent,
     ModalComponent,
-    TableComponent,
+    //TableComponent,
     TodoComponent,
-    UserComponent,
+    //UserComponent,
     PageNotFoundComponent,
     LoginPageComponent,
     DashboardComponent,
     SignupPageComponent,
     ForgotPasswordComponent,
+   // ChartsComponent,
+   // BarchartComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -52,9 +58,10 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     AntdModule,
-    DataTablesModule,
+  //  DataTablesModule,
     LayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
+   // HighchartsChartModule,
 
   ],
   providers: [
