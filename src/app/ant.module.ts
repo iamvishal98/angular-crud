@@ -16,6 +16,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 @NgModule({
     exports : [
@@ -35,7 +38,10 @@ import { NzResultModule } from 'ng-zorro-antd/result';
         NzIconModule,
         NzToolTipModule,
         NzTabsModule,
-        NzResultModule
+        NzResultModule,
+        NzCardModule,
+        NzSelectModule,
+        NzDropDownModule
     ]
 })
 export class AntdModule {}

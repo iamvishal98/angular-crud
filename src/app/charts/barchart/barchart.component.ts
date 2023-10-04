@@ -1,4 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from "@angular/core";
 import * as Highcharts from "highcharts";
 import chartdata from "../../../assets/json/chartsData.json";
 
@@ -10,8 +16,8 @@ interface dt {
   acquirer: string;
 }
 
-interface barchartData  {
-  name:string;
+interface barchartData {
+  name: string;
   data: number[];
 }
 
@@ -20,39 +26,50 @@ interface barchartData  {
   templateUrl: "./barchart.component.html",
   styleUrls: ["./barchart.component.scss"],
 })
-export class BarchartComponent implements OnInit {
+export class BarchartComponent implements OnInit, OnChanges {
   Highcharts: typeof Highcharts = Highcharts;
-  data: barchartData[]= [] ;
+  data: barchartData[] = [];
   dates: string[] = [];
+  @Input() selectedValue: { label: string; value: string } = {
+    label: "Success",
+    value: "success",
+  };
 
-  ngOnInit(): void {
-    //console.log(chartdata);
+  optionList = [
+    { label: "Success", value: "success" },
+    { label: "All", value: "all" },
+  ];
+  compareFn = (o1: any, o2: any): boolean =>
+    o1 && o2 ? o1.value === o2.value : o1 === o2;
+  selectionChange(value: { label: string; value: string }): void {
+    this.setData(value);
+  }
+
+  setData(value: { label: string; value: string }) {
     let maxkey = 0;
+    this.data = [];
     const chartData: { [key: string]: dt[] } = chartdata;
     for (const key in chartData) {
       if (chartData[key].length > maxkey)
         this.dates = chartData[key].map((item) => item.date);
     }
-
-    this.dates = this.dates.sort((a: any, b: any) => {
-      const date1 = new Date(a);
-      const date2 = new Date(b);
-      return date1.getTime() - date2.getTime() ;
-    });
-
-   // console.log(this.dates);
     let actualObj: any = {};
     for (const key in chartData) {
       let obj: { [key: string]: any } = {};
       chartData[key].forEach((item) => {
-        obj[item.date] = item.successTransactions;
+        obj[item.date] =
+          value?.label === "Success"
+            ? item.successTransactions
+            : item.allTransactions;
       });
       actualObj[key] = obj;
-      actualObj[key] = this.dates.map((item: any) => actualObj[key][item] ? actualObj[key][item] : 0 );
-     // console.log(actualObj);
-      this.data = [...this.data, {name:key,data:actualObj[key] }]
+      actualObj[key] = this.dates.map((item: any) =>
+        actualObj[key][item] ? actualObj[key][item] : 0
+      );
+
+      this.data = [...this.data, { name: key, data: actualObj[key] }];
     }
-    //console.log(this.data)
+
     this.chartOptions = {
       ...this.chartOptions,
       xAxis: {
@@ -62,56 +79,47 @@ export class BarchartComponent implements OnInit {
       series: this.data as Highcharts.SeriesOptionsType[],
     };
   }
+
+  ngOnInit(): void {
+    this.setData(this.selectedValue);
+  }
   chartOptions: Highcharts.Options = {
     chart: {
       type: "column",
     },
     title: {
-      text: "Historic World Population by Region",
+      text: "Transactions by Date",
     },
     legend: {
       layout: "horizontal",
-      // align: "left",
-      // verticalAlign: "top",
-      // x: 250,
-      // y: 100,
-      // floating: true,
-      // borderWidth: 1,
-      // shadow: true,
     },
-    // xAxis: {
-    //   categories: this.date,
-    //   title: {
-    //     text: null,
-    //   },
-    //   //crosshair: true
-    // },
+    xAxis: {
+      crosshair: true,
+    },
     yAxis: {
       min: 0,
       title: {
-        text: "Successful Transaction",
-        align: "high",
+        text: "Number Of Transaction",
+        align: "middle",
       },
       labels: {
         overflow: "allow",
       },
     },
-    // tooltip: {
-    //   valueSuffix: null,
-    // },
     plotOptions: {
-      // bar: {
-      //   dataLabels: {
-      //     enabled: true,
-      //   },
-      // },
       series: {
         stacking: "normal",
       },
     },
+    exporting: {
+      enabled: false,
+    },
     credits: {
       enabled: false,
     },
-    // series: this.data as Highcharts.SeriesOptionsType[],
   };
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.setData(this.selectedValue);
+  }
 }

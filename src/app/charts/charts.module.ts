@@ -5,18 +5,24 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartsComponent } from './charts.component';
 import { ChartRoutingModule } from './chart-routing.module';
 import { PiechartComponent } from './piechart/piechart.component';
+import { LinechartComponent } from './linechart/linechart.component';
+import { AntdModule } from '../ant.module';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
   declarations: [
     BarchartComponent,
     ChartsComponent,
-    PiechartComponent
+    PiechartComponent,
+    LinechartComponent
   ],
   imports: [
     CommonModule,
     HighchartsChartModule,
     ChartRoutingModule,
+    AntdModule,
+    FormsModule
   ]
 })
 export class ChartsModule { }

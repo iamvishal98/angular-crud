@@ -1,6 +1,18 @@
-<highcharts-chart 
-  [Highcharts]="Highcharts"
-  [options]="chartOptions"
-
-  style="width: 100%; height: 400px; display: block;"
-></highcharts-chart>
+<div>
+  <div>
+    <nz-select
+    class="select"
+    [(ngModel)]="selectedValue"
+    [compareWith]="compareFn"
+    (ngModelChange)="selectionChange($event)"
+  >
+    <nz-option *ngFor="let option of optionList" [nzValue]="option" [nzLabel]="option.label"></nz-option>
+  </nz-select>
+  </div>
+  <highcharts-chart 
+    [Highcharts]="Highcharts"
+    [options]="chartOptions"
+  
+    style="width: 100%; height: 400px; display: block;"
+  ></highcharts-chart>
+</div>
