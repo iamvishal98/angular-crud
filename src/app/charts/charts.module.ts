@@ -8,6 +8,7 @@ import { PiechartComponent } from './piechart/piechart.component';
 import { LinechartComponent } from './linechart/linechart.component';
 import { AntdModule } from '../ant.module';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DownloadBtnComponent } from './download-btn/download-btn.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     BarchartComponent,
     ChartsComponent,
     PiechartComponent,
-    LinechartComponent
+    LinechartComponent,
+    DownloadBtnComponent
   ],
   imports: [
     CommonModule,

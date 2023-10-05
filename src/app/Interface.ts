@@ -30,3 +30,26 @@ export interface ICurrentUser {
   email: string | null | undefined;
   uid: string | null | undefined;
 }
+
+export interface ITransactionData {
+  date: string;
+  name: string;
+  allTransactions: number;
+  successTransactions: number;
+  acquirer: string;
+}
+
+export interface IChartData {
+  [key: string] : ITransactionData[]
+}
+
+
+export interface ISelectOptions {
+   label: string; 
+   value: string;
+}
+
+export interface ISeriesData {
+  name: string;
+  data: number[];
+}

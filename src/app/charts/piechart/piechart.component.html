@@ -1,7 +1,7 @@
-<div class="pie-chart-container">
-  <div class="pie-select">
+<div class="chart-container">
+  <div class="chart-action-items-container">
     <nz-select
-      class="select"
+      class="select-options"
       [(ngModel)]="selectedValue"
       [compareWith]="compareFn"
       (ngModelChange)="selectionChange($event)"
@@ -12,21 +12,12 @@
         [nzLabel]="option.label"
       ></nz-option>
     </nz-select>
-    <div class="pie-action-items">
-      <span nz-icon nzType="download" nzTheme="outline" class="download-action-item" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu"></span>
-      <nz-dropdown-menu #menu="nzDropdownMenu">
-        <ul nz-menu>
-          <li nz-menu-item (click)="handleOperation('csv')">Download Csv</li>
-          <li nz-menu-item (click)="handleOperation('xls')">Download Xls</li>
-          <li nz-menu-item (click)="handleOperation('svg')">Download Svg</li>
-        </ul>
-      </nz-dropdown-menu>
-    </div>
+    <app-download-btn [chartInstance]="chartInstance" [options]="chartOptions"></app-download-btn>
   </div>
   <highcharts-chart
     [Highcharts]="Highcharts"
     [options]="chartOptions"
     style="width: 100%; height: 400px; display: block"
-    #chartInstance
+    (chartInstance)="instanceHandler($event)"
   ></highcharts-chart>
 </div>
