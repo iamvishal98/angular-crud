@@ -21,3 +21,9 @@
     @content;
   }
 }
+
+@mixin xl {
+  @media only screen and (max-width: 1324px) {
+    @content;
+  }
+}

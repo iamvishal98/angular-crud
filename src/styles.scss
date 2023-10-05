@@ -63,3 +63,19 @@ div.dataTables_wrapper div.dt-row {
     }
   }
 }
+
+// CHARTS
+
+// .select-options{
+//   min-width: 10%;
+// }
+
+.chart-container {
+  // max-width: 600px;
+  .chart-action-items-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+}

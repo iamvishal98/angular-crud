@@ -1,11 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { columns } from "./columns";
 import { ActivatedRoute, Router } from "@angular/router";
+
 @Component({
-  selector: "app-table",
-  templateUrl: "./table.component.html",
-  styleUrls: ["./table.component.scss"],
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
   constructor(
@@ -93,4 +94,5 @@ export class TableComponent implements OnInit {
       },
     };
   }
+
 }

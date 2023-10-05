@@ -1,0 +1,15 @@
+<h1 nz-typography [ngClass]="'header'">Charts</h1>
+
+<div class="widget-wrapper">
+  <nz-card nzHoverable="true" class="card-charts">
+    <app-barchart [selectedValue]="this.selectedValue"></app-barchart>
+  </nz-card>
+  <nz-card nzHoverable="true" class="card-charts">
+    <app-piechart (chartChnage)="handleChartChnage($event)"></app-piechart>
+  </nz-card>
+</div>
+<div class="chart-wrapper">
+  <nz-card nzHoverable="true" class="card-charts">
+    <app-linechart></app-linechart>
+  </nz-card>
+</div>

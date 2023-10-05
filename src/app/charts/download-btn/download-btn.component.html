@@ -1,0 +1,22 @@
+<div class="action-item">
+  <span
+    nz-icon
+    nzType="download"
+    nzTheme="outline"
+    class="download-action-item"
+    nz-dropdown
+    nzTrigger="click"
+    [nzDropdownMenu]="menu"
+  ></span>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+      <li
+        nz-menu-item
+        *ngFor="let menuItem of menuItems"
+        (click)="handleOperation(isSubmenu[menuItem])"
+      >
+        {{ menuItem }}
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+</div>

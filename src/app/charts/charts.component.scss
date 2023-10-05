@@ -1,0 +1,33 @@
+@import '../../styles.scss';
+// .chart-container {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     margin-bottom: 20px;
+// }
+
+// .chart-wrapper{
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+// }
+
+.widget-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .ant-card {
+        width: 600px;
+        @include xl {
+          width: 100%;
+        }  
+      }
+      @include xl {
+        flex-direction: column;
+        gap: 70px;
+      }
+}
+
+.chart-wrapper {
+  margin-top: 70px;
+}
