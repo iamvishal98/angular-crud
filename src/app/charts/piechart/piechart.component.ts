@@ -5,6 +5,7 @@ import {
   Output,
   ChangeDetectorRef,
   AfterContentChecked,
+  AfterViewInit,
 } from "@angular/core";
 import * as Highcharts from "highcharts";
 import chartdata from "../../../assets/json/chartsData.json";
@@ -16,18 +17,21 @@ import { setDataPie } from "src/assets/utils/helpers";
   templateUrl: "./piechart.component.html",
   styleUrls: ["./piechart.component.scss"],
 })
-export class PiechartComponent implements OnInit, AfterContentChecked {
+export class PiechartComponent
+  implements OnInit, AfterContentChecked, AfterViewInit
+{
   constructor(private cdref: ChangeDetectorRef) {}
   data: any = [];
   chartData: any;
   Highcharts: typeof Highcharts = Highcharts;
-  @Output() chartChnage = new EventEmitter<{ label: string; value: string }>();
+  @Output() chartChnage = new EventEmitter<ISelectOptions>();
   chartInstance!: Highcharts.Chart;
 
   seriesOptions = {
     name: "Transactions",
     colorByPoint: true,
     data: [],
+    type: "pie",
   };
 
   optionList = [
@@ -39,55 +43,15 @@ export class PiechartComponent implements OnInit, AfterContentChecked {
     o1 && o2 ? o1.value === o2.value : o1 === o2;
   selectionChange(value: { label: string; value: string }): void {
     this.chartChnage.emit(value);
-    this.setData(value);
-  }
-
-  // SeriesOptionTypes[] is not taking type:"pie" 
-  setData(value: ISelectOptions) {
     this.data = setDataPie(value, chartdata);
-    this.chartOptions = {
-      ...this.chartOptions,
-      series: [
-        { ...this.seriesOptions, data: this.data },
-      ] as Highcharts.SeriesOptionsType[],
-    };
+    this.chartInstance.series[0].setData(this.data);
   }
-
-
-  // setData(value: { label: string; value: string }) {
-  //   this.chartData = chartdata;
-  //   this.data = [];
-  //   for (const key in this.chartData) {
-  //     this.data = [
-  //       ...this.data,
-  //       {
-  //         name: key,
-  //         y: this.chartData[key].reduce(
-  //           (acc: number, curr: any) =>
-  //             value.label === "All"
-  //               ? curr.allTransactions + acc
-  //               : curr.successTransactions + acc,
-  //           0
-  //         ),
-  //       },
-  //     ];
-  //   }
-
-  //   //this.data = [{ name: "Transactions", colorByPoint: true, data: this.data }];
-  //   this.chartOptions = {
-  //     ...this.chartOptions,
-  //     series: ([{...this.seriesOptions, data: this.data}] as Highcharts.SeriesOptionsType[])
-  //   };
-  // }
 
   ngOnInit(): void {
-    this.setData(this.selectedValue);
+    this.data = setDataPie(this.selectedValue, chartdata);
   }
 
   chartOptions: Highcharts.Options = {
-    chart: {
-      type: "pie",
-    },
     title: {
       text: "Transactions",
       align: "center",
@@ -122,6 +86,13 @@ export class PiechartComponent implements OnInit, AfterContentChecked {
         showInLegend: true,
       },
     },
+    series: [
+      {
+        name: "Transactions",
+        data: [],
+        type: "pie",
+      },
+    ],
   };
 
   instanceHandler(value: Highcharts.Chart) {
@@ -129,5 +100,11 @@ export class PiechartComponent implements OnInit, AfterContentChecked {
   }
   ngAfterContentChecked(): void {
     this.cdref.detectChanges();
+  }
+
+  ngAfterViewInit(): void {
+    if (this.chartInstance) {
+      this.chartInstance.series[0].setData(this.data);
+    }
   }
 }

@@ -37,6 +37,16 @@ export function setChartOptions(
 
       return chartOptions;
 
+    
+    case 'pie' : 
+      // chartOptions = {
+      //   ...chartOptions,
+      //   series: [
+      //     ...chartOptions.series,
+
+      //   ]
+      // }
+
     default:
       return chartOptions;
   }
