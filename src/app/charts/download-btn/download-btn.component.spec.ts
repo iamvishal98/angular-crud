@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DownloadBtnComponent } from './download-btn.component';
+import { AntdModule } from 'src/app/ant.module';
 
 describe('DownloadBtnComponent', () => {
   let component: DownloadBtnComponent;
@@ -8,7 +9,9 @@ describe('DownloadBtnComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DownloadBtnComponent]
+      imports:[AntdModule],
+      declarations: [DownloadBtnComponent],
+      schemas:[CUSTOM_ELEMENTS_SCHEMA],
     });
     fixture = TestBed.createComponent(DownloadBtnComponent);
     component = fixture.componentInstance;

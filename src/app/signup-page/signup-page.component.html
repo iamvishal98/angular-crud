@@ -23,19 +23,23 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your username!">
+        <nz-form-control nzErrorTip="Please input your username!" [nzErrorTip]="combineTplUn">
           <nz-input-group nzPrefixIcon="user">
             <input
-              type="text"
+              type="email"
               nz-input
               formControlName="email"
               placeholder="Email"
             />
+            <ng-template #combineTplUn let-control>
+              <ng-container *ngIf="control.hasError('required')">Please input your Password!</ng-container>
+              <ng-container *ngIf="control.hasError('email')">Please enter valid email!</ng-container>
+            </ng-template>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-form-control [nzErrorTip]="combineTpl">
           <nz-input-group nzPrefixIcon="lock">
             <input
               type="password"
@@ -43,6 +47,10 @@
               formControlName="password"
               placeholder="Password"
             />
+            <ng-template #combineTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">Please input your Password!</ng-container>
+              <ng-container *ngIf="control.hasError('pattern')">Min 6 character with atleast one capital letter!</ng-container>
+            </ng-template>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>

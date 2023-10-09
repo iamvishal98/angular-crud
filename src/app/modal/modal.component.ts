@@ -13,8 +13,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { TodoList } from "../Interface";
-import { ListService } from "../services/list.service";
-import { ApiService } from "../services/api.service";
 
 @Component({
   selector: "app-modal",
@@ -24,8 +22,6 @@ import { ApiService } from "../services/api.service";
 export class ModalComponent implements OnChanges {
   constructor(
     private fb: NonNullableFormBuilder,
-    private listService: ListService,
-    private apiService: ApiService
   ) {}
 
   @Input() isModalVisible: boolean = false;

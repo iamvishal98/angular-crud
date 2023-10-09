@@ -23,8 +23,8 @@ export class SignupPageComponent {
     confirmpassword: FormControl<string>;
   }> = this.fb.group({
     displayName: ["", [Validators.required]],
-    email: ["", [Validators.required]],
-    password: ["", [Validators.required]],
+    email: ["", [Validators.required,Validators.email]],
+    password: ["", [Validators.required,Validators.pattern(/^(?=.*[A-Z]).{6,}$/)]],
     confirmpassword: ["", [Validators.required]],
   });
 

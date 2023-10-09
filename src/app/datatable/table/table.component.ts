@@ -15,7 +15,7 @@ export class TableComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   allData: any = [];
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
 
   visible: boolean = false;
   label: string = "";

@@ -44,7 +44,7 @@ export class TodolistComponent {
     else data = { ...data, completed: true };
 
     this.completedTask.emit(data);
-    //  console.log(data)
+      //console.log(data)
 
     //this.apiService.checkToDO(data).subscribe((val) => console.log(val));
   }
