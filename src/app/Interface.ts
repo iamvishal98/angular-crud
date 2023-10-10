@@ -14,6 +14,10 @@ export interface ResponseData {
   registered: boolean;
 }
 
+export interface IFirebaseData {
+  [key: string]: TodoList;
+}
+
 export interface IAuth {
   email: string;
   password: string;

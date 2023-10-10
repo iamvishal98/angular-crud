@@ -26,12 +26,13 @@ export class ApiService {
   }
 
   getToDo() {
+    
     return this.http
       .get<firebaseData>(`${this.Url}/${this.currentUser?.uid}/post.json`, {
         headers: new HttpHeaders({
           "Access-Control-Allow-Origin": "*",
         }),
-        params: new HttpParams().set("print", "pretty"),
+        // params: new HttpParams().set("print", "pretty"),
       })
       .pipe(
         map((response: firebaseData) => {
@@ -41,7 +42,7 @@ export class ApiService {
               todoListData.push({ ...response[key], id: key });
             }
           }
-          return todoListData;
+          return todoListData;  
         }),
         catchError((errorResponse) => {
           return throwError("Something went wrong");

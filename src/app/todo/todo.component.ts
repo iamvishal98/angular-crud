@@ -24,7 +24,6 @@ export class TodoComponent implements OnInit {
   user = this.apiService.currentUser?.displayName;
   ngOnInit(): void {
     this.fetchData();
-    //console.log(this.apiService.currentUser?.displayName);
   }
   isVisible = false;
   index: number = 4; // MOCK UNIQUE ID FOR TODO ITEM
@@ -49,12 +48,16 @@ export class TodoComponent implements OnInit {
       (response) => {
         this.listOfData = response;
         this.isDataLoading = false;
+      //  console.log(this.listOfData);
       },
       (error) => {
         this.messageService.errorMessage(error);
         this.isDataLoading = false;
       }
     );
+
+    
+    
   }
 
   submitForm() {
@@ -102,7 +105,8 @@ export class TodoComponent implements OnInit {
     });
   }
   completedTask(task: TodoList) {
-    this.apiService.checkToDO(task).subscribe(() => {
+    this.apiService.checkToDO(task).subscribe((data:any) => {
+      console.log(data)
       this.fetchData();
       if (task.completed)
         this.messageService.successMessage("Marked as Complete");
