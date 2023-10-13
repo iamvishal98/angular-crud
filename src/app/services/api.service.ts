@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { ICurrentUser, TodoList } from "../Interface";
+import { ICurrentUser, IDataTable, TodoList } from "../Interface";
 import { catchError, map } from "rxjs/operators";
-import { Subject, throwError } from "rxjs";
+import { Observable, Subject, throwError } from "rxjs";
 
 interface firebaseData {
   [key: string]: TodoList;
@@ -18,8 +18,8 @@ export class ApiService {
 
   Url = "https://crud-2aa5a-default-rtdb.firebaseio.com";
 
-  addToDo(data: TodoList) {
-    return this.http.post<TodoList>(
+  addToDo(data: TodoList): Observable<{name: string}>{
+    return this.http.post<{name: string}>(
       `${this.Url}/${this.currentUser?.uid}/post.json`,
       data
     );
@@ -51,7 +51,7 @@ export class ApiService {
   }
 
   deleteToDo(id: string) {
-    return this.http.delete<TodoList>(
+    return this.http.delete<null>(
       `${this.Url}/${this.currentUser?.uid}/post/${id}.json`
     );
   }
@@ -70,12 +70,16 @@ export class ApiService {
   }
 
   //for Datables
-  fetchData() {
-    return this.http.get("../assets/demo-data.json");
+  fetchTableData(parameters:any) {
+   return   this.http.get("../assets/demo-data.json",parameters).pipe(
+      map((data:any) => {
+        return data
+      }) 
+    );
   }
 
   fetchUserData(userid: string) {
-    return this.http.get("../assets/demo-data.json").pipe(
+    return this.http.get<IDataTable[]>("../assets/demo-data.json").pipe(
       map((resp: any) => {
         console.log(resp);
         return resp.data.filter((item: any) => item.id === userid);

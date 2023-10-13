@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { columns } from "./columns";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-table',
@@ -12,7 +13,8 @@ export class TableComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private apiService: ApiService,
   ) {}
   allData: any = [];
   dtOptions: any = {};
@@ -21,14 +23,6 @@ export class TableComponent implements OnInit {
   label: string = "";
   value: string = "";
 
-  // Close(): void {
-  //   this.visible = false;
-  // }
-  // Open(data: any, colind: number): void {
-  //   this.visible=true;
-  //   this.label = columns[colind].title
-  //   this.value=data;
-  // }
 
   handleNavigation() {
     this.router.navigate(["/"]);
@@ -39,8 +33,9 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = {
       ajax: (dataTablesParameters: any, callback: any) => {
-        this.http
-          .get("../assets/demo-data.json", dataTablesParameters)
+        // this.http
+        //   .get("../assets/demo-data.json", dataTablesParameters)
+        this.apiService.fetchTableData(dataTablesParameters)
           .subscribe((resp: any) => {
             const formattedData = resp.data.map((item: any) => {
               return {

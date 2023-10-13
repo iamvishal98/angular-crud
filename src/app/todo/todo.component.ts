@@ -24,6 +24,7 @@ export class TodoComponent implements OnInit {
   user = this.apiService.currentUser?.displayName;
   ngOnInit(): void {
     this.fetchData();
+    
   }
   isVisible = false;
   index: number = 4; // MOCK UNIQUE ID FOR TODO ITEM
@@ -70,7 +71,7 @@ export class TodoComponent implements OnInit {
       };
       this.index++;
       this.apiService.addToDo(toDo).subscribe(
-        () => {
+        (data) => {
           this.fetchData();
           this.messageService.successMessage("task added successfully");
         },
@@ -81,6 +82,7 @@ export class TodoComponent implements OnInit {
 
       this.validateForm.get("description")?.reset();
     } else {
+      
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
@@ -99,20 +101,25 @@ export class TodoComponent implements OnInit {
   }
 
   deleteData(task: TodoList) {
-    this.apiService.deleteToDo(task.id).subscribe(() => {
-      this.fetchData();
+    this.apiService.deleteToDo(task.id).subscribe((data) => {
+      console.log("deleted",data);
+       this.fetchData();
       this.messageService.successMessage("Task Deleted");
+    },() => {
+      this.messageService.errorMessage("something went wrong")
     });
   }
   completedTask(task: TodoList) {
     this.apiService.checkToDO(task).subscribe((data:any) => {
-      console.log(data)
+      //console.log("updated",data)
       this.fetchData();
       if (task.completed)
         this.messageService.successMessage("Marked as Complete");
       else this.messageService.successMessage("Marked as Incomplete");
+    },() => {
+      this.messageService.errorMessage("something went wrong");
     });
-  }
+  } 
 
   handleUpdate(task: TodoList) {
     this.apiService.editToDO(task).subscribe(

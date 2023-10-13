@@ -57,3 +57,29 @@ export interface ISeriesData {
   name: string;
   data: number[];
 }
+
+
+export interface IDataTable {
+  
+    id: string;
+    name: string;
+    dob: string;
+    street: string;
+    town: string;
+    postode: string;
+    telephone: string;
+    pets: Array<string>;
+    score: number;
+    email: string;
+    image1: string;
+    image2: string;
+    image3: string;
+    image4: string;
+    image5: string;
+    image6: string;
+    image7: string;
+    image8: string;
+    image9: string;
+    image10: string;
+  
+}

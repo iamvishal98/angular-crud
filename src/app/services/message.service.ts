@@ -7,7 +7,7 @@ export class MessageService {
   successMessage(message: string) {
     this.message.create('success',message)
   }
-  errorMessage(message: string) {
+  errorMessage(message: string): void{
     this.message.create('error',message)
   }
 }
