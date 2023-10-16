@@ -47,6 +47,26 @@ describe("TodolistComponent", () => {
         fixture.nativeElement.querySelectorAll("nz-table tbody tr").length
       ).toEqual(1);
     });
+
+    it("should the description is empty is should render '-", () => {
+      let task:TodoList =  {
+        completed: false,
+        createdOn: new Date(),
+        description: "",
+        id: "NfUuFlnCKhwzl26lbZO",
+      }
+      component.todoData = [task];
+
+      fixture.detectChanges();
+     
+      const desc=fixture.nativeElement.querySelector("nz-table tbody tr td");
+
+      
+      expect(desc.textContent).toEqual("-");
+   
+      
+      
+    })
   });
 
   describe("OUTPUT: DELETE", () => {

@@ -17,7 +17,7 @@
         *ngFor="let data of todoData"
         [ngClass]="data.completed ? 'completed-task' : ''"
       >
-        <td>{{ data.description }}</td>
+        <td>{{ data.description.length >1 ? data.description : '-' }}</td>
         <td>{{ data.createdOn | date }}</td>
         <td>
           <span

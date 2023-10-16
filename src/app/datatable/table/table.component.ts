@@ -1,28 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { columns } from "./columns";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from "src/app/services/api.service";
+import { DataTableDirective } from "angular-datatables";
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  selector: "app-table",
+  templateUrl: "./table.component.html",
+  styleUrls: ["./table.component.scss"],
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, AfterViewInit {
   constructor(
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private apiService: ApiService,
+    private apiService: ApiService
   ) {}
+  @ViewChild(DataTableDirective, { static: false })
+  datatableElement!: DataTableDirective;
   allData: any = [];
   dtOptions: any = {};
-
+  dtInstance: any;
   visible: boolean = false;
   label: string = "";
   value: string = "";
-
 
   handleNavigation() {
     this.router.navigate(["/"]);
@@ -33,9 +35,8 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = {
       ajax: (dataTablesParameters: any, callback: any) => {
-        // this.http
-        //   .get("../assets/demo-data.json", dataTablesParameters)
-        this.apiService.fetchTableData(dataTablesParameters)
+        this.apiService
+          .fetchTableData(dataTablesParameters)
           .subscribe((resp: any) => {
             const formattedData = resp.data.map((item: any) => {
               return {
@@ -74,11 +75,13 @@ export class TableComponent implements OnInit {
       pagingType: "simple",
       rowCallback: (row: Node, data: any, index: number) => {
         const self = this;
-        $(".itemId", row).on("click", () => {
+        const itemId = $(".itemId", row);
+        const td2 = $("td:eq(2)", row);
+        itemId.on("click", () => {
           //this.router.navigate([`ang-tables/user/${data.textId}`])
           this.router.navigate(["dashboard/ang-tables", data.textId]);
         });
-        $("td:eq(2)", row).on("click", () => {
+        td2.on("click", () => {
           this.router.navigate([`dashboard/ang-tables/${data.textId}`]);
         });
         // return row;
@@ -87,7 +90,15 @@ export class TableComponent implements OnInit {
 
         // }})
       },
-    };
-  }
+    }; 
 
+    
+  }
+  ngAfterViewInit(): void {
+    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      this.dtInstance = dtInstance;
+      if(dtInstance)
+        dtInstance.ajax.reload();
+    });
+  }
 }

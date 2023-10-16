@@ -10,6 +10,7 @@ import {
 import { Observable } from "rxjs";
 import { AuthService } from "./services/auth.service";
 
+
 export const AuthGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
@@ -19,12 +20,12 @@ export const AuthGuard: CanActivateFn = (
     : inject(Router).navigate(["/auth/login"]);
 };
 
-export const AuthGuardChild: CanActivateChildFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-): Observable<boolean> | Promise<boolean> | boolean => {
-  return inject(AuthService).loggedIn;
-};
+// export const AuthGuardChild: CanActivateChildFn = (
+//   route: ActivatedRouteSnapshot,
+//   state: RouterStateSnapshot
+// ): Observable<boolean> | Promise<boolean> | boolean => {
+//   return inject(AuthService).loggedIn;
+// };
 
 export const CounterAuthGuard: CanActivateChildFn = (
   route: ActivatedRouteSnapshot,

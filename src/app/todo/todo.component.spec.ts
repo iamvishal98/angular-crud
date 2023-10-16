@@ -146,6 +146,7 @@ describe("TodoComponent", () => {
       expect(errorMsgSpy).toHaveBeenCalledWith(errResponse);
       expect(component.isDataLoading).toBeFalsy();
     })
+  
   });
 
   describe("ADD TODO METHOD", () => {
