@@ -27,7 +27,6 @@ export class LoginPageComponent {
 
   async submitForm(): Promise<void> {
     if (this.validateForm.valid) {
-      console.log("submit", this.validateForm.value);
       this.authService.Login(this.validateForm.value as IAuth);
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {

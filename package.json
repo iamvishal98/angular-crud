@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@ant-design/icons-angular": "^16.0.0",
     "angular-datatables": "^16.0.0",
     "datatables.net": "^1.11.3",
     "datatables.net-bs5": "^1.11.3",
@@ -46,6 +47,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "karma-sabarivka-reporter": "^3.3.1",
     "typescript": "~5.1.3"
   }
 }

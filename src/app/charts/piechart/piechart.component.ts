@@ -26,25 +26,31 @@ export class PiechartComponent
   Highcharts: typeof Highcharts = Highcharts;
   @Output() chartChnage = new EventEmitter<ISelectOptions>();
   chartInstance!: Highcharts.Chart;
+ 
 
-  seriesOptions = {
-    name: "Transactions",
-    colorByPoint: true,
-    data: [],
-    type: "pie",
-  };
+  // seriesOptions = {
+  //   name: "Transactions",
+  //   colorByPoint: true,
+  //   data: [],
+  //   type: "pie",
+  // };
 
   optionList = [
     { label: "Success", value: "success" },
     { label: "All", value: "all" },
   ];
   selectedValue = { label: "Success", value: "success" };
+
   compareFn = (o1: any, o2: any): boolean =>
     o1 && o2 ? o1.value === o2.value : o1 === o2;
   selectionChange(value: { label: string; value: string }): void {
     this.chartChnage.emit(value);
     this.data = setDataPie(value, chartdata);
-    this.chartInstance.series[0].setData(this.data);
+    console.log(this.data);
+    
+    if (this.chartInstance && this.chartInstance.series) {
+      this.chartInstance.series[0].setData(this.data);
+    }
   }
 
   ngOnInit(): void {
@@ -96,7 +102,7 @@ export class PiechartComponent
   };
 
   instanceHandler(value: Highcharts.Chart) {
-    this.chartInstance = value;
+    this.chartInstance = value;  
   }
   ngAfterContentChecked(): void {
     this.cdref.detectChanges();

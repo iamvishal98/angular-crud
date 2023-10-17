@@ -19,6 +19,16 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { IconDefinition } from "@ant-design/icons-angular";
+import {
+  LockOutline,
+  UserOutline
+} from '@ant-design/icons-angular/icons';
+
+const icons: IconDefinition[] = [
+    UserOutline,
+    LockOutline
+  ];
 
 @NgModule({
     exports : [
@@ -42,6 +52,10 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
         NzCardModule,
         NzSelectModule,
         NzDropDownModule
+    ],
+
+    imports:[
+        NzIconModule.forChild(icons)
     ]
 })
 export class AntdModule {}

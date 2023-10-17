@@ -37,7 +37,7 @@ export class LinechartComponent implements OnInit, AfterContentChecked {
   compareFn = (o1: any, o2: any): boolean =>
     o1 && o2 ? o1.value === o2.value : o1 === o2;
   selectionChange(value: ISelectOptions): void {
-    this.data = setData(value, chartdata, this.dates);
+    this.data = setData(value, chartdata, this.dates);   
     this.chartOptions = setChartOptions(
       this.chartOptions,
       this.data,

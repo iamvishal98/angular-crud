@@ -28,9 +28,6 @@ describe("TodolistComponent", () => {
       expect(component).toBeTruthy();
     });
 
-    // it("should open modal",() => {
-    //   component.
-    // })
   });
 
   describe("INPUT: GETTING TO-DO", () => {
