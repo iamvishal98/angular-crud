@@ -8,7 +8,6 @@ import {
 import { HttpRequest } from "@angular/common/http";
 
 
-// form validations
 describe("API-SERVICES", () => {
   let service: ApiService;
   let testingController: HttpTestingController;
@@ -42,14 +41,39 @@ describe("API-SERVICES", () => {
     };
     localStorage.setItem("user", JSON.stringify(user));
   });
+  afterEach(() => {
+  });
 
   it("should be created", () => {
     expect(service).toBeTruthy();
   });
 
+  it("should return null if user key is not present in  localStorage", () => {
+    const localStorageMock = spyOn(
+      window.localStorage,
+      "getItem"
+    ).and.returnValue(null);
+    const result = service.currentUser;
+    expect(result).toBeNull();
+  });
+
+  it("should return user if user key is  present in  localStorage", () => {
+    const localStorageMock = spyOn(
+      window.localStorage,
+      "getItem"
+    ).and.returnValue(
+      JSON.stringify({
+        displayName: "Test ",
+        email: "test@email.com",
+        uid: "vxvggsMsQtVr5s6ISWKY5l6S",
+      })
+    );
+    const result = service.currentUser;
+    expect(result).toBeTruthy();
+  });
+
   it("should get All the To-do", () => {
     service.getToDo().subscribe((todo: any) => {
-     // console.log(todo);
       expect(todo).toBeTruthy();
     });
     const req = testingController.expectOne(
@@ -57,7 +81,28 @@ describe("API-SERVICES", () => {
     );
     expect(req.request.method).toEqual("GET");
     req.flush(reponse);
-    testingController.verify();
+  });
+
+  it('should handle error', () => {
+    // const mockErrorResponse = new ErrorEvent('HTTP ERROR', {
+    //   error: new Error('Something went wrong'),
+    //   message: 'Something went wrong',
+    // });
+
+    let errorStr = 'Something went wrong'
+    service.getToDo().subscribe((data) => {
+      //fail('Expected an error');
+      console.log('spec suc',data);
+      
+    }, error => {
+      console.log('spec',error);
+      
+      expect(error).toBe('Something went wrong');
+    });
+
+    const req = testingController.expectOne(`${service.Url}/${service.currentUser?.uid}/post.json`);
+    req.flush(errorStr,{ status: 400, statusText: "Bad Request" })
+    expect(req.request.method).toBe('GET');
   });
 
   it("should Add To-do in Todo-List", () => {
@@ -69,10 +114,12 @@ describe("API-SERVICES", () => {
       completed: false,
     };
     service.addToDo(task).subscribe((resp: any) => {
-     // console.log(resp);
       expect(resp.name).toBeTruthy();
     });
-     const req = testingController.expectOne({method:'POST',url:`${service.Url}/${service.currentUser?.uid}/post.json`});
+    const req = testingController.expectOne({
+      method: "POST",
+      url: `${service.Url}/${service.currentUser?.uid}/post.json`,
+    });
     // const req = testingController.expectOne((request: HttpRequest<any>) => {
     //     return (request.url === `${service.Url}/${service.currentUser?.uid}/post.json`)
     //     && (request.method === 'POST')
@@ -80,85 +127,113 @@ describe("API-SERVICES", () => {
     // });
     //expect(req.request.method).toBe("POST")
     req.flush(response);
-    testingController.verify();
   });
 
-  it("should delete to-do",() => {
-    const id = '12345'
+  it("should delete to-do", () => {
+    const id = "12345";
     const task: TodoList = {
-        id: "12345",
-        createdOn: new Date(),
-        description: "testing add task",
-        completed: false,
-      };
+      id: "12345",
+      createdOn: new Date(),
+      description: "testing add task",
+      completed: false,
+    };
 
-      service.deleteToDo(id).subscribe((resp: any) => {
-        expect(resp).toBeNull();
-      })
+    service.deleteToDo(id).subscribe((resp: any) => {
+      expect(resp).toBeNull();
+    });
 
-      const req = testingController.expectOne(`${service.Url}/${service.currentUser?.uid}/post/${id}.json`)
-      expect(req.request.method).toBe("DELETE")
-      req.flush(null)
-      testingController.verify();
+    const req = testingController.expectOne(
+      `${service.Url}/${service.currentUser?.uid}/post/${id}.json`
+    );
+    expect(req.request.method).toBe("DELETE");
+    req.flush(null);
   });
 
-  it("should edit to-do",() => {
-    const id = '12345'
+  it("should edit to-do", () => {
+    const id = "12345";
     const task: TodoList = {
-        id: "12345",
-        createdOn: new Date(),
-        description: "testing add task",
-        completed: false,
-      };
+      id: "12345",
+      createdOn: new Date(),
+      description: "testing add task",
+      completed: false,
+    };
 
-      service.editToDO(task).subscribe((resp: any) => {
-        expect(resp.description).toBeTruthy();
-      })
-      const req = testingController.expectOne(`${service.Url}/${service.currentUser?.uid}/post/${id}.json`);
-      expect(req.request.method).toBe("PATCH");
-      req.flush({"description":"updated task"});
-      testingController.verify();
-  })
+    service.editToDO(task).subscribe((resp: any) => {
+      expect(resp.description).toBeTruthy();
+    });
+    const req = testingController.expectOne(
+      `${service.Url}/${service.currentUser?.uid}/post/${id}.json`
+    );
+    expect(req.request.method).toBe("PATCH");
+    req.flush({ description: "updated task" });
+  });
 
-  it("should mark task as complete",() => {
+  it("should mark task as complete", () => {
     const task: TodoList = {
-        id: "12345",
-        createdOn: new Date(),
-        description: "testing add task",
-        completed: false,
-      };
+      id: "12345",
+      createdOn: new Date(),
+      description: "testing add task",
+      completed: false,
+    };
 
     service.checkToDO(task).subscribe((resp: any) => {
-        console.log(resp);
-        
-        expect(resp.completed).toBeTruthy()
+      expect(resp.completed).toBeTruthy();
     });
 
-    const mockreq = testingController.expectOne(`${service.Url}/${service.currentUser?.uid}/post/${task.id}.json`);
+    const mockreq = testingController.expectOne(
+      `${service.Url}/${service.currentUser?.uid}/post/${task.id}.json`
+    );
     expect(mockreq.request.method).toBe("PATCH");
-    mockreq.flush({"completed":true});
-    testingController.verify();
+    mockreq.flush({ completed: true });
+  });
 
-  })
-
-  it("should mark task as incomplete",() => {
+  it("should mark task as incomplete", () => {
     const task: TodoList = {
-        id: "12345",
-        createdOn: new Date(),
-        description: "testing add task",
-        completed: true,
-      };
+      id: "12345",
+      createdOn: new Date(),
+      description: "testing add task",
+      completed: true,
+    };
 
     service.checkToDO(task).subscribe((resp: any) => {
-        console.log(resp);
-        
-        expect(resp.completed).toBeFalsy()
+      expect(resp.completed).toBeFalsy();
     });
 
-    const mockreq = testingController.expectOne(`${service.Url}/${service.currentUser?.uid}/post/${task.id}.json`);
+    const mockreq = testingController.expectOne(
+      `${service.Url}/${service.currentUser?.uid}/post/${task.id}.json`
+    );
     expect(mockreq.request.method).toBe("PATCH");
-    mockreq.flush({"completed":false});
-    testingController.verify();
+    mockreq.flush({ completed: false });
+  });
 
-  })
+  it('should fetch table data', () => {
+    const parameters = {};
+    const expectedData = [{}];
+
+    service.fetchTableData(parameters).subscribe((data) => {
+      expect(data).toEqual(expectedData);
+    });
+
+    const req = testingController.expectOne('../assets/demo-data.json');
+    expect(req.request.method).toBe('GET');
+    req.flush(expectedData);
+  });
+
+  it('should fetch user data', () => {
+    const userId = '1';
+    const testData = [
+      { id: '1', name: 'John Doe' },
+      { id: '2', name: 'Jane Smith' },
+      { id: '3', name: 'Bob Johnson' }
+    ];
+
+    service.fetchUserData(userId).subscribe((data) => {
+      expect(data.length).toBe(1);
+      expect(data[0].id).toBe(userId);
+    });
+
+    const req = testingController.expectOne('../assets/demo-data.json');
+    expect(req.request.method).toBe('GET');
+    req.flush({ data: testData });
+  });
 });

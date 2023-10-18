@@ -25,14 +25,12 @@ export class ApiService {
     );
   }
 
-  getToDo() {
-    
+  getToDo() {  
     return this.http
       .get<firebaseData>(`${this.Url}/${this.currentUser?.uid}/post.json`, {
         headers: new HttpHeaders({
           "Access-Control-Allow-Origin": "*",
         }),
-        // params: new HttpParams().set("print", "pretty"),
       })
       .pipe(
         map((response: firebaseData) => {
@@ -81,7 +79,6 @@ export class ApiService {
   fetchUserData(userid: string) {
     return this.http.get<IDataTable[]>("../assets/demo-data.json").pipe(
       map((resp: any) => {
-        console.log(resp);
         return resp.data.filter((item: any) => item.id === userid);
       })
     );

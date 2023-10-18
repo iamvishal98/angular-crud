@@ -16,7 +16,6 @@ export class UserComponent implements OnInit {
   ) {}
   user!: any;
   userId!: string;
-  adata!: Observable<{ [key: string]: string }>;
 
   handleNavigation() {
     this.router.navigate(["dashboard/ang-tables"]);
@@ -26,7 +25,6 @@ export class UserComponent implements OnInit {
     this.apiService.fetchUserData(this.userId).subscribe((response) => {
       if (response) {
         this.user = response;
-        console.log(this.user);
       }
     });
   }

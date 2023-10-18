@@ -143,6 +143,24 @@ describe("LinechartComponent", () => {
 
         expect(result).toBe(false);
       });
+      
+      it('should return true if both o1 and o2 are falsy values and are equal', () => {
+        const o1 = null;
+        const o2 = null;
+    
+        const result = component.compareFn(o1, o2);
+    
+        expect(result).toBe(true);
+      });
+    
+      it('should return false if o1 and o2 are different falsy values', () => {
+        const o1 = null;
+        const o2 = undefined;
+    
+        const result = component.compareFn(o1, o2);
+    
+        expect(result).toBe(false);
+      });
     });
   });
 
@@ -179,6 +197,7 @@ describe("LinechartComponent", () => {
       { label: "Success", value: "success" },
       { label: "All", value: "all" },
     ];
+    
     it("intializing the component data for the first time", () => {
       expect(component.data).toEqual(successData);
     });

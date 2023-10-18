@@ -22,12 +22,18 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { IconDefinition } from "@ant-design/icons-angular";
 import {
   LockOutline,
-  UserOutline
+  UserOutline,
+  CloseCircleOutline,
+  DownloadOutline,
+  MenuOutline
 } from '@ant-design/icons-angular/icons';
 
 const icons: IconDefinition[] = [
     UserOutline,
-    LockOutline
+    LockOutline,
+    CloseCircleOutline,
+    DownloadOutline,
+    MenuOutline
   ];
 
 @NgModule({

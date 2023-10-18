@@ -50,7 +50,18 @@ describe("ModalComponent", () => {
       fixture.detectChanges();
       expect(component.validateupdateForm.valid).toEqual(true);
     });
-  });
+    it('should update the form value when the description of currentTask changes', () => {
+      const changes= {
+        currentTask: {
+          currentValue: {
+            description: 'New description'
+          }
+        }
+      };
+      component.ngOnChanges(changes as unknown as SimpleChanges );
+      expect(component.validateupdateForm?.get('Updatedescription')?.value).toEqual('New description');
+    });
+   });
 
   describe("INPUT", () => {
     it("should recieve value to show/hide modal", () => {

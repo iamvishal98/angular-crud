@@ -26,7 +26,6 @@ export class ForgotPasswordComponent {
 
   async submitForm(): Promise<void> {
     if (this.validateForm.valid) {
-      console.log("submit", this.validateForm.value);
       this.authService.resetPassword(this.validateForm.value.email as string);
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {

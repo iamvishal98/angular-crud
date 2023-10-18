@@ -24,7 +24,8 @@ export class DownloadBtnComponent implements OnChanges {
         "Download Xls": this.chartInstance ? "xls" : "",
         "Download Svg": this.chartInstance ? "svg" : "",
       }
-      this.menuItems= Object.keys(this.isSubmenu)
+      this.menuItems= Object.keys(this.isSubmenu);
+      
   
     }
   }
@@ -37,7 +38,7 @@ export class DownloadBtnComponent implements OnChanges {
         break;
       case "xls":
         // console.log("xls");
-        this.chartInstance.downloadXLS();
+       this.chartInstance.downloadXLS();
         break;
       case "svg":
         // console.log(value);
@@ -51,7 +52,6 @@ export class DownloadBtnComponent implements OnChanges {
         break;
       default:
         console.log('default')
-        console.log(value)
         break;
     }
   }

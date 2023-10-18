@@ -41,7 +41,7 @@ describe("PiechartComponent", () => {
       expect(component.optionList).toBeDefined();
       expect(component.selectedValue.value).toEqual("success");
     });
-  })
+  });
 
   // Mehtods Chaining Check
 
@@ -178,8 +178,26 @@ describe("PiechartComponent", () => {
        
         expect(result).toBe(false);
       });
+
+      it('should return true if both o1 and o2 are falsy values and are equal', () => {
+        const o1 = null;
+        const o2 = null;
+    
+        const result = component.compareFn(o1, o2);
+    
+        expect(result).toBe(true);
+      });
+    
+      it('should return false if o1 and o2 are different falsy values', () => {
+        const o1 = null;
+        const o2 = undefined;
+    
+        const result = component.compareFn(o1, o2);
+    
+        expect(result).toBe(false);
+      });
     });
-  })
+  });
 
   //Data Checking
   describe("Checks For Data Equalities", () => {
@@ -222,10 +240,11 @@ describe("PiechartComponent", () => {
     it('should return success data when the selected value is "success"', () => {
       component.selectionChange(optionList[0]);
       expect(component.data).toEqual(successData);
-    })
+    });
+
     it('should return all transaction data when the selected value is "all"', () => {
       component.selectionChange(optionList[1]);
       expect(component.data).toEqual(allData);
-    })
+    });
   });
 });
