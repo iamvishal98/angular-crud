@@ -102,7 +102,6 @@ export class TodoComponent implements OnInit {
 
   deleteData(task: TodoList) {
     this.apiService.deleteToDo(task.id).subscribe((data) => {
-      console.log("deleted",data);
        this.fetchData();
       this.messageService.successMessage("Task Deleted");
     },() => {

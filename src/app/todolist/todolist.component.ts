@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, Input } from "@angular/core";
 import { TodoList } from "../Interface";
-import { ListService } from "../services/list.service";
+//import { ListService } from "../services/list.service";
 import { ApiService } from "../services/api.service";
 @Component({
   selector: "app-todolist",
@@ -9,7 +9,7 @@ import { ApiService } from "../services/api.service";
 })
 export class TodolistComponent {
   constructor(
-    private listService: ListService,
+    //private listService: ListService,
     private apiService: ApiService
   ) {}
 

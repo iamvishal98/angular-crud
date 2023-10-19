@@ -10,13 +10,12 @@ import { LoginPageComponent } from "./login-page/login-page.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { SignupPageComponent } from "./signup-page/signup-page.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
-//import { ChartsComponent } from "./charts/charts.component";
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
   {
     path: "auth",
-    canActivate: [CounterAuthGuard],
+    canActivate: [CounterAuthGuard],  
     children: [
       { path: "login", component: LoginPageComponent, pathMatch: "full" },
       { path: "signup", component: SignupPageComponent },

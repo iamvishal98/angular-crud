@@ -31,7 +31,7 @@ export const CounterAuthGuard: CanActivateChildFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ): Observable<boolean> | Promise<boolean> | boolean | UrlTree => {
-  console.log(inject(AuthService).loggedIn);
+  // console.log(inject(AuthService).loggedIn);
 
   return !inject(AuthService).loggedIn
     ? true

@@ -60,7 +60,9 @@ export class AuthService {
       localStorage.removeItem("isUserLoggedIn");
       localStorage.removeItem("user");
       this.router.navigate(["/auth/login"]);
-    });
+    }) .catch((error) =>
+    this.messageService.errorMessage(error)
+  );
   }
 
   resetPassword(email: string) {

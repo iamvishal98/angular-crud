@@ -46,7 +46,6 @@ export class PiechartComponent
   selectionChange(value: { label: string; value: string }): void {
     this.chartChnage.emit(value);
     this.data = setDataPie(value, chartdata);
-    console.log(this.data);
     
     if (this.chartInstance && this.chartInstance.series) {
       this.chartInstance.series[0].setData(this.data);
